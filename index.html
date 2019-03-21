@@ -1,0 +1,41 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const messagesEl = document.getElementById("messages")
+  let socket = io();
+  socket.on('translation', data => {
+      console.log(data)
+      let elm = document.createElement("div")
+      elm.className = "imgContainer"
+      data.images.forEach(imgSrc => {
+          let img = new Image()
+          img.src = imgSrc
+          elm.appendChild(img)
+      })
+
+        let name = document.createElement("div")
+        name.innerText = data.name
+        name.className = "username"
+        name.style.color = data.color
+
+      document.getElementById("messages").prepend(elm)
+      document.getElementById("messages").prepend(name)
+  })
+</script>
+
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages img {height: 200px; margin-right: 5px}
+      .username {font-size: 30px}
+      .imgContainer {background-color: grey; height: 200px; margin-bottom: 30px}
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+  </body>
+</html>
