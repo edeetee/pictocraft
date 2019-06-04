@@ -6,25 +6,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.gui.hud.ChatHudLine;
-import net.minecraft.client.render.debug.DebugRenderer.Renderer;
-import net.minecraft.client.texture.NativeImage;
-import net.minecraft.client.texture.Texture;
 import net.minecraft.client.texture.TextureManager;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.util.Identifier;
 
 import net.fabricmc.example.RenderUtil;
-
-import net.minecraft.client.render.block.BlockRenderManager;
 
 import net.fabricmc.example.PictoLine;
 
@@ -39,7 +27,7 @@ public abstract class ExampleMixin extends net.minecraft.client.gui.DrawableHelp
 	private void preDraw(int tick, CallbackInfo info) {
 		// info.cancel();
 
-		PictoLine.clearCache(tick);
+		// PictoLine.clearCache(tick);
 		// PictoLine.list();
 
 		// System.out.println(info.isCancellable() ? "Can" : "Cannot" + " Cancel");
