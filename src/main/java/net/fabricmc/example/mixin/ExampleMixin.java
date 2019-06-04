@@ -35,27 +35,12 @@ public abstract class ExampleMixin extends net.minecraft.client.gui.DrawableHelp
 
 	@Shadow private java.util.List<net.minecraft.client.gui.hud.ChatHudLine> visibleMessages;
 
-	Map<Integer, PictoLine> cachedMessages = new HashMap<>();
-
 	@Inject(method = "draw", at = @At("HEAD"), cancellable = true)
-	private void preDraw(int int_1, CallbackInfo info) {
-		info.cancel();
+	private void preDraw(int tick, CallbackInfo info) {
+		// info.cancel();
 
-		for (ChatHudLine line : visibleMessages) {
-			int id = line.getId();
-			PictoLine message;
-
-			if(cachedMessages.containsKey(id))
-				message = cachedMessages.get(id);
-			else {
-				message = PictoLine.tryFrom(line);
-				cachedMessages.put(id, message);
-			}
-
-			if(message != null){
-				// NativeImage.fromInputStream(inputStream_1);
-			}
-		}
+		PictoLine.clearCache(tick);
+		// PictoLine.list();
 
 		// System.out.println(info.isCancellable() ? "Can" : "Cannot" + " Cancel");
 		// this.drawString(, string_1, int_1, int_2, int_3);
@@ -82,9 +67,15 @@ public abstract class ExampleMixin extends net.minecraft.client.gui.DrawableHelp
 		// cachedMessages.remove(id).message
 	}
 
-	@Inject(method = "addMessage", at = @At(target = "Lnet/minecraft/network/chat/Component;ILorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V"))
-	public void addMessageCatch(net.minecraft.network.chat.Component component_1, int int_1, CallbackInfo info) {
-		System.out.println("ADDED: " + int_1);
+	@Inject(method = "addMessage", at = @At("HEAD"))
+	public void addMessageCatch(net.minecraft.network.chat.Component component_1, CallbackInfo info) {
+		for (ChatHudLine line : visibleMessages) {
+			PictoLine message = PictoLine.tryFrom(line);
+
+			if(message != null){
+				// NativeImage.fromInputStream(inputStream_1);
+			}
+		}
 	}
 
 	// @Inject(method = "addMessage", at = @At("HEAD"))
