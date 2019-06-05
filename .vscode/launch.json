@@ -22,6 +22,14 @@
       "mainClass": "net.fabricmc.loader.launch.knot.KnotServer",
       "vmArgs": "-Dfabric.development\u003dtrue",
       "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)",
+      "request": "launch",
+      // "preLaunchTask": "build",
+      "mainClass": "net.fabricmc.example.Request",
+      "classPaths": ["build/libs/mc-fabric-mod-1.0.0.jar"]
     }
   ]
 }

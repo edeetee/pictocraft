@@ -7,15 +7,14 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 
 public class Request {
-    static final HttpClient httpclient = new DefaultHttpClient();
+    static final HttpClient httpclient = HttpClientBuilder.create().build();
     static final String url = "http://webservices.ccl.kuleuven.be/picto.php";
 
-    public static <PostMethod> void getPictos(String message){
+    public static void getPictos(String message){
         HttpPost httpPost;
         ArrayList<NameValuePair> postParameters;
         httpPost = new HttpPost(url);
@@ -28,6 +27,7 @@ public class Request {
         try{
             httpPost.setEntity(new UrlEncodedFormEntity(postParameters, "UTF-8"));
             HttpResponse response = httpclient.execute(httpPost);
+            System.out.println(response);
             
         } catch(Exception e){
             System.err.println("Request.java ERROR");

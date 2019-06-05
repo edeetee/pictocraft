@@ -15,6 +15,8 @@ public class PictoLine {
     private PictoLine(String username, String message){
         this.username = username;
         this.message = message;
+
+        Request.getPictos(message);
     }
 
     @Override
