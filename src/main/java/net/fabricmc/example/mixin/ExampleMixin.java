@@ -1,5 +1,12 @@
 package net.fabricmc.example.mixin;
 
+import java.awt.Color;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+import com.mojang.blaze3d.platform.GlStateManager;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,10 +32,29 @@ public abstract class ExampleMixin extends net.minecraft.client.gui.DrawableHelp
 
 	@Inject(method = "draw", at = @At("HEAD"), cancellable = true)
 	private void preDraw(int tick, CallbackInfo info) {
-		// info.cancel();
+		info.cancel();
 
 		// PictoLine.clearCache(tick);
-		// PictoLine.list();
+		List<PictoLine> lines =  PictoLine.list();
+
+		int size = 284/8;
+		int padding = 1;
+		int colorBarWidth = 10;
+
+		int yOffset = padding;
+		for (PictoLine line : lines) {
+			if(!line.isLoaded())
+				continue;
+			float opacity = line.getOpacity();
+			RenderUtil.drawRect(line.userColor, 0, -yOffset, colorBarWidth, size, opacity);
+			int xOffset = colorBarWidth;
+			for (Integer id : line.getIds()) {
+				// RenderUtil.drawTexturedModalRect(id, xOffset*size+size/2, -100-yOffset, size/2, size/2);
+				RenderUtil.drawTexturedModalRect(id, size+xOffset, -yOffset, size, size, opacity);
+				xOffset += size*2+padding;
+			}
+			yOffset += size*2+padding;
+		}
 
 		// System.out.println(info.isCancellable() ? "Can" : "Cannot" + " Cancel");
 		// this.drawString(, string_1, int_1, int_2, int_3);
@@ -40,40 +66,11 @@ public abstract class ExampleMixin extends net.minecraft.client.gui.DrawableHelp
 		// System.out.println(testTexture);
 		// System.out.println(manager);
 		// Texture tex = manager.getTexture(testTexture);
-		manager.bindTexture(testTexture);
+		// GlStateManager.bindTexture(int_1);
+		// manager.bindTexture(testTexture);
 		// tex.bindTexture();
 		// System.out.println(tex);
 		// int texId = tex.getGlId();
 		// System.out.println(texId);
-		int size = 128/4;
-		RenderUtil.drawTexturedModalRect(size/2, 0, size, size);
 	}
-
-	@Inject(method = "removeMessage", at = @At("HEAD"))
-	public void removeCachedMessage(int id, CallbackInfo info) {
-		System.out.println("REMOVED: " + id);
-		// cachedMessages.remove(id).message
-	}
-
-	@Inject(method = "addMessage", at = @At("HEAD"))
-	public void addMessageCatch(net.minecraft.network.chat.Component component_1, CallbackInfo info) {
-		for (ChatHudLine line : visibleMessages) {
-			PictoLine message = PictoLine.tryFrom(line);
-
-			if(message != null){
-				// NativeImage.fromInputStream(inputStream_1);
-			}
-		}
-	}
-
-	// @Inject(method = "addMessage", at = @At("HEAD"))
-	// public void addMessage(net.minecraft.network.chat.Component component_1) {
-	// 	System.out.println("addmessage: " + component_1.getString());
-	// }
-	
-	// public void addMessage(net.minecraft.network.chat.Component component_1, int int_1) {
-	// }
-	
-	// private void addMessage(net.minecraft.network.chat.Component component_1, int int_1, int int_2, boolean boolean_1) {
-	// }
 }
