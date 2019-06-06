@@ -1,11 +1,6 @@
-package net.fabricmc.example.mixin;
+package net.edeetee.pictocraft.mixin;
 
-import java.awt.Color;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-
-import com.mojang.blaze3d.platform.GlStateManager;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -15,16 +10,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.ChatHud;
-import net.minecraft.client.gui.hud.ChatHudLine;
 import net.minecraft.client.texture.TextureManager;
 import net.minecraft.util.Identifier;
 
-import net.fabricmc.example.RenderUtil;
+import net.edeetee.pictocraft.RenderUtil;
 
-import net.fabricmc.example.PictoLine;
+import net.edeetee.pictocraft.PictoLine;
+
+//TODO: minecraft blocks, input, 
 
 @Mixin(ChatHud.class)
-public abstract class ExampleMixin extends net.minecraft.client.gui.DrawableHelper {
+public abstract class DrawChatMixin extends net.minecraft.client.gui.DrawableHelper {
 	private static final TextureManager manager = MinecraftClient.getInstance().getTextureManager();
 	private static final Identifier testTexture = new Identifier("modid", "icon.png");
 

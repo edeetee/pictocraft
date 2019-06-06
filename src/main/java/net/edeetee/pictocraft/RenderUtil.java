@@ -1,4 +1,4 @@
-package net.fabricmc.example;
+package net.edeetee.pictocraft;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.*;

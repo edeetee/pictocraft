@@ -1,11 +1,11 @@
 {
   "required": true,
-  "package": "net.fabricmc.example.mixin",
+  "package": "net.edeetee.pictocraft.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],
   "client": [
-    "ExampleMixin",
+    "DrawChatMixin",
     "MessageMixin"
   ],
   "injectors": {

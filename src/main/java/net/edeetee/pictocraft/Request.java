@@ -1,4 +1,4 @@
-package net.fabricmc.example;
+package net.edeetee.pictocraft;
 
 import java.util.ArrayList;
 import java.util.List;

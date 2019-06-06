@@ -1,32 +1,18 @@
-package net.fabricmc.example;
+package net.edeetee.pictocraft;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.Executor;
 
 import javax.imageio.ImageIO;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-
-import org.lwjgl.opengl.GL13C;
-
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.texture.NativeImage;
-import net.minecraft.client.texture.NativeImageBackedTexture;
-import net.minecraft.client.texture.TextureManager;
+import net.minecraft.client.search.SearchManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.util.Identifier;
 
 public class PictoLine {
     final public String username;
@@ -46,6 +32,8 @@ public class PictoLine {
         this.message = message;
 
         userColor = Color.getHSBColor((float)username.hashCode()/Integer.MAX_VALUE, 1.0f, 1.0f);
+
+        // SearchManager.ITEM_TAG
 
         new Thread(new Runnable(){
             @Override

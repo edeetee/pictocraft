@@ -5,7 +5,10 @@
     "tasks": [
         {
             "label": "build",
-            "group": "build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "type": "shell",
             "command": "./gradlew build"
         }
