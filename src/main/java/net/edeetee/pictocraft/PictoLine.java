@@ -13,6 +13,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import com.ibm.icu.impl.URLHandler.URLVisitor;
+import com.mojang.blaze3d.platform.GlStateManager;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -62,11 +63,15 @@ class RenderItem implements Renderable {
     @Override
     public void render() {
         RenderUtil.push();
-        RenderUtil.translate(-0.5f, -0.5f);
-        RenderUtil.scale(0.2f, 0.2f);
-        // renderer.renderItem(icon, Type.GUI);
+        float pad = -.75f;
+        float scale = 1.8f;
+        // RenderUtil.translate(pad, pad);
+        RenderUtil.scale(scale, -scale);
+        GlStateManager.enableTexture();
+        renderer.renderItem(icon, Type.GUI);
         // renderer.renderGuiItem(icon, 0, 0);
-        renderer.renderGuiItem(icon, 0, 0);
+        // renderer.renderGuiItem(icon, 0, 0);
+        // renderer.render
         RenderUtil.pop();
     }
 }
@@ -142,10 +147,9 @@ public class PictoLine implements Renderable {
     public void render() {
         RenderUtil.push();
         float opacity = getOpacity();
-        RenderUtil.drawRect(userColor, 0, 0, 0.1f, 1, opacity);
-        RenderUtil.translate(1.1f, 0);
+        RenderUtil.drawRect(userColor, 0.2f, 1, opacity);
+        RenderUtil.translate(1.3f, 0);
         for (Renderable picto : pictos) {
-            // RenderUtil.setColor(Color.WHITE, opacity);
             picto.render();
             // RenderUtil.drawTexturedModalRect(id, xOffset*size+size/2, -100-yOffset, size/2, size/2);
             // RenderUtil.drawTexturedModalRect(id, size+xOffset, -yOffset, size, size, opacity);

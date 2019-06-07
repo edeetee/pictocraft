@@ -3,6 +3,10 @@ package net.edeetee.pictocraft.mixin;
 import java.awt.Color;
 import java.util.List;
 
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.platform.GlStateManager.DestFactor;
+import com.mojang.blaze3d.platform.GlStateManager.SourceFactor;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,11 +27,6 @@ import net.edeetee.pictocraft.PictoLine;
 
 @Mixin(ChatHud.class)
 public abstract class DrawChatMixin extends net.minecraft.client.gui.DrawableHelper {
-	private static final TextureManager manager = MinecraftClient.getInstance().getTextureManager();
-	private static final Identifier testTexture = new Identifier("modid", "icon.png");
-
-	@Shadow private java.util.List<net.minecraft.client.gui.hud.ChatHudLine> visibleMessages;
-
 	@Inject(method = "draw", at = @At("HEAD"), cancellable = true)
 	private void preDraw(int tick, CallbackInfo info) {
 		info.cancel();
@@ -38,8 +37,10 @@ public abstract class DrawChatMixin extends net.minecraft.client.gui.DrawableHel
 		int size = 30;
 
 		RenderUtil.push();
-		RenderUtil.translate(0, -5);
-        RenderUtil.scale(size, size);
+		RenderUtil.scale(size, size);
+		RenderUtil.translate(0, -0.2f);
+		// GlStateManager.enableBlend();
+		// GlStateManager.blendFunc(SourceFactor.SRC_ALPHA, DestFactor.ONE_MINUS_SRC_ALPHA);
 		for (PictoLine line : lines) {
 			if(!line.isLoaded())
 				continue;
@@ -48,6 +49,7 @@ public abstract class DrawChatMixin extends net.minecraft.client.gui.DrawableHel
 			RenderUtil.translate(0, -2.1f);
 		}
 		RenderUtil.pop();
+		RenderUtil.setColor(Color.white);
 
 		// System.out.println(info.isCancellable() ? "Can" : "Cannot" + " Cancel");
 		// this.drawString(, string_1, int_1, int_2, int_3);

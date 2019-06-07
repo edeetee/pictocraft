@@ -115,8 +115,8 @@ public class RenderUtil {
 	public static void drawTexturedModalRect(int texId) {
 		glDisable(GL_CULL_FACE);
 		glBindTexture(GL_TEXTURE_2D, texId);
-		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		glBegin(GL_TRIANGLES);
 		glNormal3f(0, 0, 1);
 		glTexCoord2f(1, 1);
@@ -133,7 +133,7 @@ public class RenderUtil {
 		glVertex2d(1, 1);
 		glEnd();
 
-		glDisable(GL_BLEND);
+		glEnable(GL_CULL_FACE);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
@@ -153,15 +153,14 @@ public class RenderUtil {
 		glPopMatrix();
 	}
 
-	public static void drawRect(Color color, int posX, int posY, float width, float height, float opacity) {
+	public static void drawRect(Color color, float width, float height, float opacity) {
 		glDisable(GL_CULL_FACE);
 		glBindTexture(GL_TEXTURE_2D, 0);
-		glPushMatrix();
-		glTranslated(posX, posY, 0);
-		glScalef(width, height, 0.0f);
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		setColor(color, opacity);
+
+		glPushMatrix();
+		glScalef(width, height, 0.0f);
+
 		glBegin(GL_TRIANGLES);
 		glNormal3f(0, 0, 1);
 		glTexCoord2f(1, 1);
@@ -179,7 +178,7 @@ public class RenderUtil {
 		glEnd();
 
 		glColor4f(1F, 1F, 1F, 1F);
-		glDisable(GL_BLEND);
+		glEnable(GL_CULL_FACE);
 		glPopMatrix();
 	}
 
