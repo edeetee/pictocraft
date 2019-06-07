@@ -9,8 +9,9 @@
 - User testing
 
 ## [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
-This mod wouldn't be possible without the use of this existing translation technology
-It would be good to get this running on the host machine, instead of using their server as it does currently
+This mod wouldn't be possible without the use of this existing translation technology.
+It would be good to get this running on the host machine, instead of using their server as it does currently.
+It's images are [Sclera Symbols](https://sclera.be/en/vzw/home).
 
 ## Development
 
