@@ -1,4 +1,6 @@
-# Mod to translate text to images inside minecraft
+# Pictocraft
+
+Translate text to images inside minecraft
 
 ## Features
 - Random color identifiers for players
