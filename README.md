@@ -1,7 +1,16 @@
 # Mod to translate text to images inside minecraft
 
+## Features
+- Random color identifiers for players
+- Translates english into minecraft blocks and aac images
+
+## Future
+- Input system
+- User testing
+
 ## [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
-This mod wouldn't be possible without the use of this amazing existing technology.
+This mod wouldn't be possible without the use of this existing translation technology
+It would be good to get this running on the host machine, instead of using their server as it does currently
 
 ## Development
 
@@ -11,4 +20,4 @@ Uses the existing Text2Pict online translation demo to translate text inside min
 
 [Most recent fabric version](https://modmuss50.me/fabric.html)
 
-Big thanks to the fabric-mc discord, especially B0undarybreaker, tterrag, UpcraftLP
+Thanks to the fabric-mc discord;
