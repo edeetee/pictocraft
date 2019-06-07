@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 
+import com.mojang.blaze3d.platform.GlStateManager;
+
 import org.lwjgl.BufferUtils;
 
 // import net.minecraft.client.Minecraft;
@@ -114,7 +116,7 @@ public class RenderUtil {
 
 	public static void drawTexturedModalRect(int texId) {
 		glDisable(GL_CULL_FACE);
-		glBindTexture(GL_TEXTURE_2D, texId);
+		GlStateManager.bindTexture(texId);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		glBegin(GL_TRIANGLES);
@@ -134,7 +136,7 @@ public class RenderUtil {
 		glEnd();
 
 		glEnable(GL_CULL_FACE);
-		glBindTexture(GL_TEXTURE_2D, 0);
+		GlStateManager.bindTexture(texId);
 	}
 
 	public static void translate(float x, float y){
@@ -155,6 +157,7 @@ public class RenderUtil {
 
 	public static void drawRect(Color color, float width, float height, float opacity) {
 		glDisable(GL_CULL_FACE);
+		GlStateManager.bindTexture(0);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		setColor(color, opacity);
 
@@ -195,26 +198,26 @@ public class RenderUtil {
 	}
 
 	public static void setColor(Color c) {
-		glColor4f(c.getRed() / 255f, c.getGreen() / 255f, c.getBlue() / 255f, c.getAlpha() / 255f);
+		GlStateManager.color4f(c.getRed() / 255f, c.getGreen() / 255f, c.getBlue() / 255f, c.getAlpha() / 255f);
 	}
 
 	public static void setColor(Color c, float alpha) {
-		glColor4f(c.getRed() / 255f, c.getGreen() / 255f, c.getBlue() / 255f, alpha);
+		GlStateManager.color4f(c.getRed() / 255f, c.getGreen() / 255f, c.getBlue() / 255f, alpha);
 	}
 
-	public static Color toColor(int rgba) {
-		int r = rgba & 0xFF, g = rgba >> 8 & 0xFF, b = rgba >> 16 & 0xFF, a = rgba >> 24 & 0xFF;
-		return new Color(r, g, b, a);
-	}
+	// public static Color toColor(int rgba) {
+	// 	int r = rgba & 0xFF, g = rgba >> 8 & 0xFF, b = rgba >> 16 & 0xFF, a = rgba >> 24 & 0xFF;
+	// 	return new Color(r, g, b, a);
+	// }
 
-	public static int toRGBA(Color c) {
-		return c.getRed() | c.getGreen() << 8 | c.getBlue() << 16 | c.getAlpha() << 24;
-	}
+	// public static int toRGBA(Color c) {
+	// 	return c.getRed() | c.getGreen() << 8 | c.getBlue() << 16 | c.getAlpha() << 24;
+	// }
 
-	public static void setColor(int rgba) {
-		int r = rgba & 0xFF, g = rgba >> 8 & 0xFF, b = rgba >> 16 & 0xFF, a = rgba >> 24 & 0xFF;
-		glColor4b((byte) r, (byte) g, (byte) b, (byte) a);
-	}
+	// public static void setColor(int rgba) {
+	// 	int r = rgba & 0xFF, g = rgba >> 8 & 0xFF, b = rgba >> 16 & 0xFF, a = rgba >> 24 & 0xFF;
+	// 	glColor4b((byte) r, (byte) g, (byte) b, (byte) a);
+	// }
 
 	// public static Point calculateMouseLocation() {
 	// 	Minecraft minecraft = Minecraft.getMinecraft();

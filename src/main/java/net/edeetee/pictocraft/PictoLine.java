@@ -7,8 +7,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -28,6 +30,23 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.util.Identifier;
 
 class RenderPicto implements Renderable {
+    static Map<String, RenderPicto> cache = new HashMap<>();
+
+    public static RenderPicto tryFromURL(String URL){
+        if(cache.containsKey(URL))
+            return cache.get(URL);
+
+        try{
+            URL url = new URL(URL);
+            RenderPicto picto = new RenderPicto(url);
+            cache.put(URL, picto);
+            return picto;
+        } catch(MalformedURLException e){
+            // System.out.println(idOrWord + " is not a valid URL");
+        }
+        return null;
+    }
+
     BufferedImage img;
     RenderPicto(URL url){
         try{
@@ -54,9 +73,17 @@ class RenderPicto implements Renderable {
 
 class RenderItem implements Renderable {
     final ItemStack icon;
-	private static final ItemRenderer renderer = MinecraftClient.getInstance().getItemRenderer();
+    private static final ItemRenderer renderer = MinecraftClient.getInstance().getItemRenderer();
+    
+    public static RenderItem tryFromId(String id){
+        Item item = ItemSearch.idToItem(id);
+        if(item != null)
+            return new RenderItem(item);
+        else
+            return null;
+    }
 
-    RenderItem(Item item){
+    private RenderItem(Item item){
         icon = item.getStackForRender();
     }
 
@@ -67,7 +94,6 @@ class RenderItem implements Renderable {
         float scale = 1.8f;
         // RenderUtil.translate(pad, pad);
         RenderUtil.scale(scale, -scale);
-        GlStateManager.enableTexture();
         renderer.renderItem(icon, Type.GUI);
         // renderer.renderGuiItem(icon, 0, 0);
         // renderer.renderGuiItem(icon, 0, 0);
@@ -80,13 +106,12 @@ public class PictoLine implements Renderable {
     final public String username;
     final public Color userColor;
     final public String message;
-    private long createdMillis;
+    
 
-    // private List<BufferedImage> tempImages;
-    // private List<Integer> glIds;
-    private List<Renderable> pictos = new ArrayList<>();
 
-    private boolean loaded = false;
+    List<Renderable> pictos = new ArrayList<>();
+
+    Long createdMillis;
 
     // private static final TextureManager manager = MinecraftClient.getInstance().getTextureManager();
 
@@ -99,27 +124,23 @@ public class PictoLine implements Renderable {
         new Thread(new Runnable(){
             @Override
             public void run() {
-                List<String> imgLinks = Request.getPictos(message);
+                List<String> imgLinks = Request.getPictos(ItemSearch.getWordsAndIds(PictoLine.this.message));
 
-                if(imgLinks.size() == 0)
+                if(imgLinks != null && imgLinks.size() == 0)
                     System.err.println("NO LINKS RETURNED");
 
-                for (String imgLink : imgLinks) {
+                for (int i = 0; i < imgLinks.size(); i++) {
                     // System.out.println(imgLink);
-                    Item item = ItemSearch.idToItem(imgLink);
-                    if(item != null)
-                        pictos.add(new RenderItem(item));
-                    else {
-                        try{
-                            URL url = new URL(imgLink);
-                            pictos.add(new RenderPicto(url));
-                        } catch(MalformedURLException e){
-                            System.out.println(imgLink + " is not a valid URL");
-                        }
-                    }
+                    String urlOrId = imgLinks.get(i);
+                    Renderable picto = RenderItem.tryFromId(urlOrId);
+                    
+                    if(picto == null)
+                        picto = RenderPicto.tryFromURL(urlOrId);
+
+                    if(picto != null)
+                        pictos.add(picto);
                 }
 
-                loaded = true;
                 createdMillis = System.currentTimeMillis();
             }
         }, "PictoLineLoad").start();
@@ -131,11 +152,11 @@ public class PictoLine implements Renderable {
     }
 
     public boolean isLoaded(){
-        return loaded;
+        return createdMillis != null;
     }
 
     static final Integer showMillis = 10000;
-    static final Integer fadeMillis = 2000;
+    static final Integer fadeMillis = 5000;
     public float getOpacity(){
         return 0.8f*Math.min(1, Math.max(0, 1f-(float)(System.currentTimeMillis()-createdMillis-showMillis)/fadeMillis));
     }
@@ -159,11 +180,11 @@ public class PictoLine implements Renderable {
         RenderUtil.pop();
     }
 
-    private static List<PictoLine> cache = new ArrayList<>();
+    private static List<PictoLine> messages = new ArrayList<>();
 
     public static List<PictoLine> all(){
-        cache.removeIf(line -> line.isLoaded() && (line.getOpacity() <= 0 || line.pictos.size() == 0));
-        return cache;
+        messages.removeIf(line -> line.isLoaded() && (line.getOpacity() <= 0 || line.pictos.size() == 0));
+        return messages;
     }
 
     public static PictoLine tryFrom(Component chat){
@@ -189,24 +210,9 @@ public class PictoLine implements Renderable {
         if(username != null && message != null){
             PictoLine cur = new PictoLine(username, message);
             System.out.println(cur);
-            cache.add(0, cur);
+            messages.add(0, cur);
             return cur;
         } else
             return null;
     }
-
-    // /**
-    //  * Use to clear cache of lines over time
-    //  * @param curTick
-    //  */
-    // public static void clearCache() {
-    //     long curTick = System.currentTimeMillis();
-    //     Set<Long> keys = cache.keySet();
-    //     for (Long createTick : keys) {
-    //         if(createTick+2000 < curTick){
-    //             System.out.println("REMOVING: " + cache.get(createTick));
-    //             keys.remove(createTick);
-    //         }
-    //     }
-    // }
 }

@@ -34,11 +34,11 @@ public abstract class DrawChatMixin extends net.minecraft.client.gui.DrawableHel
 		// PictoLine.clearCache(tick);
 		List<PictoLine> lines =  PictoLine.all();
 		
-		int size = 30;
+		int size = 25;
 
 		RenderUtil.push();
 		RenderUtil.scale(size, size);
-		RenderUtil.translate(0, -0.2f);
+		RenderUtil.translate(0, -0.15f);
 		// GlStateManager.enableBlend();
 		// GlStateManager.blendFunc(SourceFactor.SRC_ALPHA, DestFactor.ONE_MINUS_SRC_ALPHA);
 		for (PictoLine line : lines) {

@@ -63,4 +63,30 @@ public class ItemSearch {
             // System.out.println();
         }
     }
+
+    static final String validSpaceRegex = "[^A-Za-z ]+";
+    static List<String> getWordsAndIds(String sentence){
+        List<String> words = new ArrayList<>(Arrays.asList(sentence.split(" ")));
+                
+        for (int numWords = Math.max(words.size(), 3); 0 < numWords; numWords--) {
+            for (int i = 0; i <= words.size()-numWords; i++) {
+                String combined = String.join(" ", words.subList(i, i+numWords)).replaceAll(validSpaceRegex, "");
+                // System.out.println("TRY: " + combined);
+                String returned = tryFind(combined);
+                if(returned != null){
+                    // System.out.println("FOUND: " + returned);
+                    words.set(i, returned);
+                    if(i+1 < words.size() && i+numWords <= words.size()){
+                        words.subList(i+1, i+numWords).clear();
+                    }
+                    // words.
+                    // for (int word = 1; word < numWords; word++) {
+                    //     words[i+word] = null;
+                    // }
+                }
+            }
+        }
+
+        return words;
+    }
 }

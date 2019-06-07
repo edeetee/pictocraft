@@ -23,14 +23,19 @@ public class Request {
     static final String url = "http://picto.ccl.kuleuven.be/picto.php";
     static final String charSet = "UTF-8";
 
-    public static List<String> getPictos(String message){
+
+    public static List<String> getPictos(String sentence){
+        return getPictos(Arrays.asList(sentence.split(" ")));
+    }
+
+    public static List<String> getPictos(List<String> words){
         HttpClient httpclient = HttpClients.createDefault();
         HttpPost httpPost;
         ArrayList<NameValuePair> postParameters;
         httpPost = new HttpPost(url);
 
         postParameters = new ArrayList<NameValuePair>();
-        postParameters.add(new BasicNameValuePair("input", replaceWords(message)));
+        postParameters.add(new BasicNameValuePair("input", String.join(" ", words)));
         postParameters.add(new BasicNameValuePair("language", "english"));
         postParameters.add(new BasicNameValuePair("picto", "sclera"));
 
@@ -49,8 +54,8 @@ public class Request {
             while(sib != null){
                 // System.out.println(sib);
                 if(sib.nodeName() == "#text" && StringUtils.isNotBlank(sib.toString())){
-                    String[] words = sib.toString().split(" ");
-                    for (String word : words) {
+                    String[] subWords = sib.toString().split(" ");
+                    for (String word : subWords) {
                         if(StringUtils.isNotBlank(word))
                             list.add(word);
                     }
@@ -67,33 +72,5 @@ public class Request {
         return list;
     }
 
-    static final String matchSomeCharsRegex = ".*[A-Za-z]+.*";
-    static final String validSpaceRegex = "[^A-Za-z ]+";
-
-    static String replaceWords(String sentence){
-        List<String> words = new ArrayList<>(Arrays.asList(sentence.split(" ")));
-                
-        for (int numWords = Math.max(words.size(), 3); 0 < numWords; numWords--) {
-            for (int i = 0; i <= words.size()-numWords; i++) {
-                String combined = String.join(" ", words.subList(i, i+numWords)).replaceAll(validSpaceRegex, "");
-                // System.out.println("TRY: " + combined);
-                String returned = ItemSearch.tryFind(combined);
-                if(returned != null){
-                    // System.out.println("FOUND: " + returned);
-                    words.set(i, returned);
-                    if(i+1 < words.size() && i+numWords <= words.size()){
-                        words.subList(i+1, i+numWords).clear();
-                    }
-                    // words.
-                    // for (int word = 1; word < numWords; word++) {
-                    //     words[i+word] = null;
-                    // }
-                }
-            }
-        }
-
-        // noNulls.removeIf(word -> word == null);
-
-        return String.join(" ", words);
-    }
+    
 }
