@@ -112,15 +112,11 @@ public class RenderUtil {
 	// 	var9.draw();
 	// }
 
-	public static void drawTexturedModalRect(int texId, int posX, int posY, int width, int height, float opacity) {
+	public static void drawTexturedModalRect(int texId) {
 		glDisable(GL_CULL_FACE);
 		glBindTexture(GL_TEXTURE_2D, texId);
-		glPushMatrix();
-		glTranslated(posX, posY, 0);
-		glScalef(width, height, 0.0f);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glColor4f(1F, 1F, 1F, opacity);
 		glBegin(GL_TRIANGLES);
 		glNormal3f(0, 0, 1);
 		glTexCoord2f(1, 1);
@@ -138,12 +134,26 @@ public class RenderUtil {
 		glEnd();
 
 		glDisable(GL_BLEND);
-		glColor4f(1F, 1F, 1F, 1F);
 		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+
+	public static void translate(float x, float y){
+		glTranslatef(x, y, 0);
+	}
+
+	public static void scale(float x, float y){
+		glScalef(x, y, 0);
+	}
+
+	public static void push(){
+		glPushMatrix();
+	}
+
+	public static void pop(){
 		glPopMatrix();
 	}
 
-	public static void drawRect(Color color, int posX, int posY, int width, int height, float opacity) {
+	public static void drawRect(Color color, int posX, int posY, float width, float height, float opacity) {
 		glDisable(GL_CULL_FACE);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glPushMatrix();

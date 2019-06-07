@@ -3,61 +3,121 @@ package net.edeetee.pictocraft;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import com.ibm.icu.impl.URLHandler.URLVisitor;
+
+import org.apache.commons.lang3.ArrayUtils;
+
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.item.ItemRenderer;
+import net.minecraft.client.render.model.json.ModelTransformation.Type;
 import net.minecraft.client.search.SearchManager;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.util.Identifier;
 
-public class PictoLine {
+class RenderPicto implements Renderable {
+    BufferedImage img;
+    RenderPicto(URL url){
+        try{
+            img = ImageIO.read(url);
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    Integer glId;
+
+    @Override
+    public void render() {
+        if(img != null){
+            glId = RenderUtil.loadTexture(img);
+            img.flush();
+            img = null;
+        }
+        if(glId != null){
+            RenderUtil.drawTexturedModalRect(glId);
+        }
+    }
+}
+
+class RenderItem implements Renderable {
+    final ItemStack icon;
+	private static final ItemRenderer renderer = MinecraftClient.getInstance().getItemRenderer();
+
+    RenderItem(Item item){
+        icon = item.getStackForRender();
+    }
+
+    @Override
+    public void render() {
+        RenderUtil.push();
+        RenderUtil.translate(-0.5f, -0.5f);
+        RenderUtil.scale(0.2f, 0.2f);
+        // renderer.renderItem(icon, Type.GUI);
+        // renderer.renderGuiItem(icon, 0, 0);
+        renderer.renderGuiItem(icon, 0, 0);
+        RenderUtil.pop();
+    }
+}
+
+public class PictoLine implements Renderable {
     final public String username;
     final public Color userColor;
     final public String message;
     private long createdMillis;
 
-    private List<BufferedImage> tempImages;
-    private List<Integer> glIds;
+    // private List<BufferedImage> tempImages;
+    // private List<Integer> glIds;
+    private List<Renderable> pictos = new ArrayList<>();
 
-    private boolean loadFailed = false;
+    private boolean loaded = false;
 
     // private static final TextureManager manager = MinecraftClient.getInstance().getTextureManager();
 
     private PictoLine(String username, String message){
         this.username = username;
-        this.message = message;
+        this.message = message.toLowerCase();
 
         userColor = Color.getHSBColor((float)username.hashCode()/Integer.MAX_VALUE, 1.0f, 1.0f);
-
-        // SearchManager.ITEM_TAG
 
         new Thread(new Runnable(){
             @Override
             public void run() {
-                List<String> imgUrls = Request.getPictos(message);
-                List<BufferedImage> imgs = new ArrayList<>();
-                for (String imgUrl : imgUrls) {
-                    try{
-                        imgs.add(ImageIO.read(new URL(imgUrl)));
-                    } catch (IOException e){
-                        loadFailed = true;
-                        System.err.println("img " + imgUrl + " failed:");
-                        e.printStackTrace();
+                List<String> imgLinks = Request.getPictos(message);
+
+                if(imgLinks.size() == 0)
+                    System.err.println("NO LINKS RETURNED");
+
+                for (String imgLink : imgLinks) {
+                    // System.out.println(imgLink);
+                    Item item = ItemSearch.idToItem(imgLink);
+                    if(item != null)
+                        pictos.add(new RenderItem(item));
+                    else {
+                        try{
+                            URL url = new URL(imgLink);
+                            pictos.add(new RenderPicto(url));
+                        } catch(MalformedURLException e){
+                            System.out.println(imgLink + " is not a valid URL");
+                        }
                     }
                 }
 
-                if(!imgs.isEmpty())
-                    tempImages = imgs;
-                else{
-                    System.out.println("No translation for: " + message);
-                    loadFailed = true;
-                }
+                loaded = true;
+                createdMillis = System.currentTimeMillis();
             }
-        }, "ahh").start();
+        }, "PictoLineLoad").start();
     }
 
     @Override
@@ -65,24 +125,8 @@ public class PictoLine {
         return "PictoLine(" + username + ": " + message + ")";
     }
 
-    private boolean isLoaded = false;
-    public List<Integer> getIds(){
-        if(tempImages != null){
-            glIds = new ArrayList<>();
-            for (BufferedImage img : tempImages) {
-                int texId = RenderUtil.loadTexture(img);
-                img.flush();
-                glIds.add(texId);
-            }
-            tempImages = null;
-            createdMillis = System.currentTimeMillis();
-        }
-
-        return glIds;
-    }
-
     public boolean isLoaded(){
-        return tempImages != null || glIds != null;
+        return loaded;
     }
 
     static final Integer showMillis = 10000;
@@ -91,10 +135,30 @@ public class PictoLine {
         return 0.8f*Math.min(1, Math.max(0, 1f-(float)(System.currentTimeMillis()-createdMillis-showMillis)/fadeMillis));
     }
 
+    static final int padding = 1;
+    static final int colorBarWidth = 10;
+    
+    @Override
+    public void render() {
+        RenderUtil.push();
+        float opacity = getOpacity();
+        RenderUtil.drawRect(userColor, 0, 0, 0.1f, 1, opacity);
+        RenderUtil.translate(1.1f, 0);
+        for (Renderable picto : pictos) {
+            // RenderUtil.setColor(Color.WHITE, opacity);
+            picto.render();
+            // RenderUtil.drawTexturedModalRect(id, xOffset*size+size/2, -100-yOffset, size/2, size/2);
+            // RenderUtil.drawTexturedModalRect(id, size+xOffset, -yOffset, size, size, opacity);
+            RenderUtil.translate(2.04f, 0);
+            // RenderUtil.translate(-100, 0);
+        }
+        RenderUtil.pop();
+    }
+
     private static List<PictoLine> cache = new ArrayList<>();
 
-    public static List<PictoLine> list(){
-        cache.removeIf(line -> line.loadFailed || (line.isLoaded && line.getOpacity() <= 0));
+    public static List<PictoLine> all(){
+        cache.removeIf(line -> line.isLoaded() && (line.getOpacity() <= 0 || line.pictos.size() == 0));
         return cache;
     }
 

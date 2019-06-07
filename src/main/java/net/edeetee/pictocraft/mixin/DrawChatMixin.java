@@ -1,5 +1,6 @@
 package net.edeetee.pictocraft.mixin;
 
+import java.awt.Color;
 import java.util.List;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,7 +18,8 @@ import net.edeetee.pictocraft.RenderUtil;
 
 import net.edeetee.pictocraft.PictoLine;
 
-//TODO: minecraft blocks, input, 
+
+//TODO: minecraft blocks, input, allow users to turn off in game
 
 @Mixin(ChatHud.class)
 public abstract class DrawChatMixin extends net.minecraft.client.gui.DrawableHelper {
@@ -31,26 +33,21 @@ public abstract class DrawChatMixin extends net.minecraft.client.gui.DrawableHel
 		info.cancel();
 
 		// PictoLine.clearCache(tick);
-		List<PictoLine> lines =  PictoLine.list();
+		List<PictoLine> lines =  PictoLine.all();
+		
+		int size = 30;
 
-		int size = 284/8;
-		int padding = 1;
-		int colorBarWidth = 10;
-
-		int yOffset = padding;
+		RenderUtil.push();
+		RenderUtil.translate(0, -5);
+        RenderUtil.scale(size, size);
 		for (PictoLine line : lines) {
 			if(!line.isLoaded())
 				continue;
-			float opacity = line.getOpacity();
-			RenderUtil.drawRect(line.userColor, 0, -yOffset, colorBarWidth, size, opacity);
-			int xOffset = colorBarWidth;
-			for (Integer id : line.getIds()) {
-				// RenderUtil.drawTexturedModalRect(id, xOffset*size+size/2, -100-yOffset, size/2, size/2);
-				RenderUtil.drawTexturedModalRect(id, size+xOffset, -yOffset, size, size, opacity);
-				xOffset += size*2+padding;
-			}
-			yOffset += size*2+padding;
+
+			line.render();
+			RenderUtil.translate(0, -2.1f);
 		}
+		RenderUtil.pop();
 
 		// System.out.println(info.isCancellable() ? "Can" : "Cannot" + " Cancel");
 		// this.drawString(, string_1, int_1, int_2, int_3);
