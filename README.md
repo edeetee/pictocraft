@@ -22,6 +22,12 @@ It's images are [Sclera Symbols](https://sclera.be/en/vzw/home).
 
 Uses the existing Text2Pict online translation demo to translate text inside minecraft for children with language disabilities.
 
+### Thoughts
+
 [Most recent fabric version](https://modmuss50.me/fabric.html)
 
-Thanks to the fabric-mc discord;
+Use something like a websocket + ngrok to connect to local devices even within a restrictive network.
+
+
+
+## Thanks to the fabric-mc discord;

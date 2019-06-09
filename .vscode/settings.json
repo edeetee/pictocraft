@@ -1,4 +1,19 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
-    "java.dependency.packagePresentation": "hierarchical"
+    "java.dependency.packagePresentation": "hierarchical",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        
+        "bin": true,
+        "build": true,
+        "gradle": true,
+        ".gradle": true,
+        ".settings": true,
+        "**/node_modules": true
+    },
+    "git.ignoreLimitWarning": true
 }

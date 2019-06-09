@@ -32,6 +32,8 @@ import net.minecraft.util.Identifier;
 class RenderPicto implements Renderable {
     static Map<String, RenderPicto> cache = new HashMap<>();
 
+    public static RenderPicto questionMark = tryFromURL(Request.getPictoUrls("?").get(0));
+
     public static RenderPicto tryFromURL(String URL){
         if(cache.containsKey(URL))
             return cache.get(URL);
@@ -40,11 +42,12 @@ class RenderPicto implements Renderable {
             URL url = new URL(URL);
             RenderPicto picto = new RenderPicto(url);
             cache.put(URL, picto);
+            // cache.entrySet().removeIf(entry -> entry)
             return picto;
         } catch(MalformedURLException e){
             // System.out.println(idOrWord + " is not a valid URL");
         }
-        return null;
+        return questionMark;
     }
 
     BufferedImage img;
@@ -95,9 +98,6 @@ class RenderItem implements Renderable {
         // RenderUtil.translate(pad, pad);
         RenderUtil.scale(scale, -scale);
         renderer.renderItem(icon, Type.GUI);
-        // renderer.renderGuiItem(icon, 0, 0);
-        // renderer.renderGuiItem(icon, 0, 0);
-        // renderer.render
         RenderUtil.pop();
     }
 }
@@ -106,8 +106,6 @@ public class PictoLine implements Renderable {
     final public String username;
     final public Color userColor;
     final public String message;
-    
-
 
     List<Renderable> pictos = new ArrayList<>();
 
@@ -124,7 +122,7 @@ public class PictoLine implements Renderable {
         new Thread(new Runnable(){
             @Override
             public void run() {
-                List<String> imgLinks = Request.getPictos(ItemSearch.getWordsAndIds(PictoLine.this.message));
+                List<String> imgLinks = Request.getPictoUrls(ItemSearch.getWordsAndIds(PictoLine.this.message));
 
                 if(imgLinks != null && imgLinks.size() == 0)
                     System.err.println("NO LINKS RETURNED");
@@ -170,7 +168,9 @@ public class PictoLine implements Renderable {
         float opacity = getOpacity();
         RenderUtil.drawRect(userColor, 0.2f, 1, opacity);
         RenderUtil.translate(1.3f, 0);
+        RenderUtil.setColor(Color.WHITE, opacity);
         for (Renderable picto : pictos) {
+            // RenderUtil.drawOutline(Color.BLACK, 1, 1, opacity*0.5f);
             picto.render();
             // RenderUtil.drawTexturedModalRect(id, xOffset*size+size/2, -100-yOffset, size/2, size/2);
             // RenderUtil.drawTexturedModalRect(id, size+xOffset, -yOffset, size, size, opacity);

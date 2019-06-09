@@ -12,24 +12,36 @@
       "vmArgs": "-Dfabric.development\u003dtrue",
       "args": " --assetIndex \"1.14.1-1.14\" --assetsDir \"/home/edeetee/.gradle/caches/fabric-loom/assets\""
     },
+    // {
+    //   "type": "java",
+    //   "name": "Minecraft Server",
+    //   "request": "launch",
+    //   "cwd": "${workspaceFolder}/run",
+    //   "console": "internalConsole",
+    //   "stopOnEntry": false,
+    //   "mainClass": "net.fabricmc.loader.launch.knot.KnotServer",
+    //   "vmArgs": "-Dfabric.development\u003dtrue",
+    //   "args": ""
+    // },
+    // {
+    //   "type": "java",
+    //   "name": "Debug (Launch)",
+    //   "request": "launch",
+    //   // "preLaunchTask": "build",
+    //   "mainClass": "net.fabricmc.example.Request",
+    //   "classPaths": ["build/libs/mc-fabric-mod-1.0.0.jar"]
+    // },
     {
-      "type": "java",
-      "name": "Minecraft Server",
+      "type": "node",
       "request": "launch",
-      "cwd": "${workspaceFolder}/run",
-      "console": "internalConsole",
-      "stopOnEntry": false,
-      "mainClass": "net.fabricmc.loader.launch.knot.KnotServer",
-      "vmArgs": "-Dfabric.development\u003dtrue",
-      "args": ""
-    },
-    {
-      "type": "java",
-      "name": "Debug (Launch)",
-      "request": "launch",
-      // "preLaunchTask": "build",
-      "mainClass": "net.fabricmc.example.Request",
-      "classPaths": ["build/libs/mc-fabric-mod-1.0.0.jar"]
+      "name": "Debug PictoInput",
+      "runtimeExecutable": "npm",
+      "cwd": "${workspaceFolder}/PictoInput",
+      "runtimeArgs": [
+        "run-script",
+        "dev"
+      ],
+      "port": 9229
     }
   ]
 }

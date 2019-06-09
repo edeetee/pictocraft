@@ -24,11 +24,11 @@ public class Request {
     static final String charSet = "UTF-8";
 
 
-    public static List<String> getPictos(String sentence){
-        return getPictos(Arrays.asList(sentence.split(" ")));
+    public static List<String> getPictoUrls(String sentence){
+        return getPictoUrls(Arrays.asList(sentence.split(" ")));
     }
 
-    public static List<String> getPictos(List<String> words){
+    public static List<String> getPictoUrls(List<String> words){
         HttpClient httpclient = HttpClients.createDefault();
         HttpPost httpPost;
         ArrayList<NameValuePair> postParameters;

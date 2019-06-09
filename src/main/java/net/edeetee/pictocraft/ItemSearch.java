@@ -55,12 +55,20 @@ public class ItemSearch {
 
     static void generateMap(){
         // Registry.ITEM.get
-        for (Item item : Registry.ITEM) {
-            String text = getName(item);
-            String rawId = itemToId(item);
-            items.put(text, rawId);
-            System.out.println(text + ": " + rawId);
-            // System.out.println();
+        //sorted to give precidence to longer sentences
+        for (int subWords = 0; subWords < 3; subWords++) {
+            for (Item item : Registry.ITEM) {
+                String rawId = itemToId(item);
+
+                List<String> words = Arrays.asList(getName(item).split(" "));
+                
+                for (int i = 0; i < words.size()-subWords; i++) {
+                    String combined = String.join(" ", words.subList(i, i+subWords+1));
+                    items.putIfAbsent(combined, rawId);
+                    // System.out.println(combined + ": " + rawId);
+                }
+
+            }
         }
     }
 

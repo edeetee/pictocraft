@@ -19,5 +19,7 @@ bin/
 .project
 
 # fabric
-
 run/
+
+#nodejs
+node_modules/

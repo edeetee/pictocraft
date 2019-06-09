@@ -117,7 +117,8 @@ public class RenderUtil {
 	public static void drawTexturedModalRect(int texId) {
 		glDisable(GL_CULL_FACE);
 		GlStateManager.bindTexture(texId);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		// GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		glBegin(GL_TRIANGLES);
 		glNormal3f(0, 0, 1);
@@ -155,9 +156,40 @@ public class RenderUtil {
 		glPopMatrix();
 	}
 
+	public static void drawOutline(Color color, float width, float height, float opacity){
+		glDisable(GL_CULL_FACE);
+		GlStateManager.bindTexture(0);
+		GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		setColor(color, opacity);
+
+		glPushMatrix();
+		glScalef(width, height, 0.0f);
+
+		GlStateManager.lineWidth(200f);
+		GlStateManager.begin(GL_LINE);
+		// glEnable(GL_LINE_SMOOTH);
+		// glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+		// glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		glNormal3f(0, 0, 1);
+		glVertex2d(1, 1);
+		glVertex2d(-1, 1);
+		glVertex2d(-1, -1);
+		glVertex2d(-1, -1);
+		glVertex2d(1, -1);
+		glVertex2d(1, 1);
+		glEnd();
+
+		setColor(Color.WHITE);
+		glEnable(GL_CULL_FACE);
+		glPopMatrix();
+	}
+
 	public static void drawRect(Color color, float width, float height, float opacity) {
 		glDisable(GL_CULL_FACE);
 		GlStateManager.bindTexture(0);
+		GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		setColor(color, opacity);
 
@@ -180,7 +212,7 @@ public class RenderUtil {
 		glVertex2d(1, 1);
 		glEnd();
 
-		glColor4f(1F, 1F, 1F, 1F);
+		setColor(Color.WHITE);
 		glEnable(GL_CULL_FACE);
 		glPopMatrix();
 	}
