@@ -1,28 +1,11 @@
 // import "isopen" as isopen
-import {connect} from 'mqtt'
+// import * as request from 'request'
+import * as fs from 'fs'
 
-const BROKER = "mqtts://broker.hivemq.com";
+let baseUri = "https://httprelay.io/link/pictocraft"
 
-var topic = "pictocraft/input"
+//https://httprelay.io/
 
-console.log(BROKER)
+// request.post(baseUri + 123)
 
-let client = connect(BROKER)
-
-
-client.on('connect', () => {
-    console.log('con')
-    client.subscribe(topic, (err, grant) => {
-        if(!err){
-            console.log(grant)
-            client.publish(topic, "HELLO WORLD")
-        } else
-            console.log(err)
-    })
-})
-
-client.on('message', function (topic, message) {
-    // message is Buffer
-    console.log(message.toString())
-    client.end()
-  })
+fs.readFile('/test', () => {})
