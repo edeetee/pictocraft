@@ -3,17 +3,14 @@ package net.edeetee.pictocraft;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import io.socket.client.IO;
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.item.Item;
 
 public class Init implements ModInitializer {
-	static final int PORT = 1024;
-	
 
 	@Override
 	public void onInitialize() {
@@ -30,33 +27,6 @@ public class Init implements ModInitializer {
 		// } catch (Exception e){
 		// 	e.printStackTrace();
 		// }
-
-		socketio();
-
-	}
-
-	public void socketio(){
-		IO.Options opts = new IO.Options();
-		opts.port = PORT;
-		
-		try{
-			Socket socket = IO.socket("http://localhost", opts);
-			socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
-				@Override
-				public void call(Object... args) {
-				//   socket.emit("foo", "hi");
-					System.out.println(args);
-					System.out.println("connected");
-				  	socket.disconnect();
-				}
-			});
-			socket.connect();
-			System.out.println("SOCKET " + socket);
-			
-			
-		} catch (URISyntaxException e){
-			e.printStackTrace();
-		}
 	}
 
 	public void test(){

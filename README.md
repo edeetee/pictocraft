@@ -22,12 +22,17 @@ It's images are [Sclera Symbols](https://sclera.be/en/vzw/home).
 
 Uses the existing Text2Pict online translation demo to translate text inside minecraft for children with language disabilities.
 
+You'll have to create your own Pusher api key in order to use the login functionality.
+On my machine I have a file PusherApi.java that contains the private api keys.
+
+https://github.com/mqtt/mqtt.github.io/wiki/public_brokers
+I think the above could be my key!!
+
 ### Thoughts
 
 [Most recent fabric version](https://modmuss50.me/fabric.html)
 
 Use something like a websocket + ngrok to connect to local devices even within a restrictive network.
-
 
 
 ## Thanks to the fabric-mc discord;

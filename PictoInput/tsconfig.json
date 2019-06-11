@@ -4,11 +4,10 @@
     "noImplicitAny": true,
     "lib": ["es2018"],
     "module": "commonjs",
+    "moduleResolution": "node",
     "target": "es5",
     "allowJs": true,
     "sourceMap": true,
-    "allowSyntheticDefaultImports": true,
-    "suppressImplicitAnyIndexErrors": true
   },
   "include": ["*.ts"]
 }

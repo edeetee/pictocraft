@@ -14,8 +14,10 @@ minecraft {
 }
 
 dependencies {
-	compile 'io.socket:socket.io-client:1.0.0'
-	compile 'com.github.dmanchon:ngrok-java-client:0.1'
+	compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0'
+	// compile 'io.socket:socket.io-client:1.0.0'
+	// compile 'com.github.dmanchon:ngrok-java-client:0.1'
+	// compile 'com.pusher:pusher-http-java:1.0.0'
 	compile 'org.jsoup:jsoup:1.12.1'
 	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
