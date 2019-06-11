@@ -2,10 +2,6 @@ pluginManagement {
     repositories {
         jcenter()
         maven {
-            name = "Eclipse Paho Repo"
-            url = "https://repo.eclipse.org/content/repositories/paho-releases/"
-        }
-        maven {
             name = 'Fabric'
             url = 'https://maven.fabricmc.net/'
         }

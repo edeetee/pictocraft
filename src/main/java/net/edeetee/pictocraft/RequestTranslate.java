@@ -19,10 +19,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 
-public class Request {
+public class RequestTranslate {
     static final String url = "http://picto.ccl.kuleuven.be/picto.php";
     static final String charSet = "UTF-8";
-
 
     public static List<String> getPictoUrls(String sentence){
         return getPictoUrls(Arrays.asList(sentence.split(" ")));

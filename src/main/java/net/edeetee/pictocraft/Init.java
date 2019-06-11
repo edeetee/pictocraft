@@ -3,8 +3,6 @@ package net.edeetee.pictocraft;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import org.eclipse.paho.client.mqttv3.MqttClient;
-
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.item.ItemRenderer;
@@ -27,6 +25,7 @@ public class Init implements ModInitializer {
 		// } catch (Exception e){
 		// 	e.printStackTrace();
 		// }
+		new InputReciever();
 	}
 
 	public void test(){
@@ -34,7 +33,7 @@ public class Init implements ModInitializer {
 
 		// System.out.println(ItemSearch.replaceWords("find me some sugar cane"));
 		// System.out.println(ItemSearch.replaceWords("do you have any dirt or sugar cane?"));
-		List<String> testValues = Request.getPictoUrls("do you have any dirt or sugar cane?");
+		List<String> testValues = RequestTranslate.getPictoUrls("do you have any dirt or sugar cane?");
 		for (String word : testValues) {
 			System.out.println(word);
 			Item item = ItemSearch.idToItem(word);

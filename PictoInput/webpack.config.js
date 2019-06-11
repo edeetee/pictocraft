@@ -8,6 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, "..", 'docs'),
     publicPath: './docs'
   },
+  mode: 'development',
 
   module: {
     rules: [
@@ -29,5 +30,10 @@ module.exports = {
     devServer: {
         contentBase: './docs',
         historyApiFallback: true
+    },
+    node: {
+      fs: 'empty',
+      net: 'empty',
+      tls: 'empty'
     }
 };
