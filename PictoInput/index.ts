@@ -1,7 +1,7 @@
 // import "isopen" as isopen
 import {connect} from 'mqtt'
 
-const BROKER = "tcp://broker.hivemq.com";
+const BROKER = "msqqs://broker.hivemq.com";
 
 var topic = "pictocraft/input"
 
