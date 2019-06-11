@@ -1,13 +1,14 @@
 // import "isopen" as isopen
 import {connect} from 'mqtt'
 
-const BROKER = "msqqs://broker.hivemq.com";
+const BROKER = "mqtts://broker.hivemq.com";
 
 var topic = "pictocraft/input"
 
-console.log('hello')
+console.log(BROKER)
 
 let client = connect(BROKER)
+
 
 client.on('connect', () => {
     console.log('con')
