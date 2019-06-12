@@ -3,6 +3,11 @@ body{
     margin: 0;
 }
 
+.picto {
+    width: 8em;
+    height: auto;
+    margin: 20px;
+}
 
 #connect {
     display: flex;
