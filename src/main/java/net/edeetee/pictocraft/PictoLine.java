@@ -156,7 +156,7 @@ public class PictoLine implements Renderable {
     static final Integer showMillis = 10000;
     static final Integer fadeMillis = 5000;
     public float getOpacity(){
-        return 0.8f*Math.min(1, Math.max(0, 1f-(float)(System.currentTimeMillis()-createdMillis-showMillis)/fadeMillis));
+        return Math.min(1, Math.max(0, 1f-(float)(System.currentTimeMillis()-createdMillis-showMillis)/fadeMillis));
     }
 
     static final int padding = 1;
@@ -166,9 +166,9 @@ public class PictoLine implements Renderable {
     public void render() {
         RenderUtil.push();
         float opacity = getOpacity();
-        RenderUtil.drawRect(userColor, 0.2f, 1, opacity);
+        RenderUtil.drawRect(userColor, 0.2f, opacity, opacity*0.8f);
         RenderUtil.translate(1.3f, 0);
-        RenderUtil.setColor(Color.WHITE, opacity);
+        // RenderUtil.setColor(Color.WHITE, opacity);
         for (Renderable picto : pictos) {
             // RenderUtil.drawOutline(Color.BLACK, 1, 1, opacity*0.5f);
             picto.render();

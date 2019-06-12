@@ -5,6 +5,7 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Random;
 
@@ -54,22 +55,39 @@ class InputReciever {
     static String getKey(){
         int hash = 0;
         try{
-            NetworkInterface iface = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
-            hash = getHash(iface.getHardwareAddress());
-            // System.out.println("hw key from " + iface.getDisplayName());
-        } catch(SocketException|UnknownHostException e){
+            hash = Collections.list(NetworkInterface.getNetworkInterfaces()).stream()
+                .map(cur -> getHash(cur))
+                .reduce(0, (prev, cur) -> prev == 0 && cur != 0 ? cur : prev);
+
+        } catch(SocketException e){
             System.err.println("Couldn't get unique device address, using random");
-            hash = rand.nextInt();
         }
+
+        if(hash == 0)
+            hash = rand.nextInt();
 
         return Integer.toString(hash, 36).substring(0, 4);
     }
 
-    static int getHash(byte[] bytes){
-        int total = 1;
-        for (byte b : bytes) {
-            total = Math.abs(b*total);
+    static int getHash(NetworkInterface iface){
+        if(iface == null)
+            return 0;
+
+        try{
+            byte[] bytes = iface.getHardwareAddress();
+            if(bytes == null)
+                return 0;
+
+            int total = 1;
+            for (byte b : bytes) {
+                total = Math.abs(b*total);
+            }
+
+            System.out.println(iface.getDisplayName() + ": " + total);
+
+            return total;
+        } catch(SocketException e){
+            return 0;
         }
-        return total;
     }
 }
