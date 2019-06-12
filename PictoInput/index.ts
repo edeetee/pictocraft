@@ -17,10 +17,10 @@ const connectContainer = document.getElementById("connect");
 const keyEl = document.getElementById("key")
 document.getElementById("submit").onclick = ev => connect(keyEl.nodeValue)
 
-connect("1234")
+// connect("1234")
 
 function connect(key: string){
-    connectContainer.hidden = true;
+    connectContainer.style.display = 'none'
 
     imgUrls.forEach(imgUrl => {
         let newPicto = imgTemplate.cloneNode() as HTMLInputElement;
