@@ -3,12 +3,34 @@ body{
     margin: 0;
 }
 
-.picto {
-    width: 8em;
-    height: auto;
-    margin: 20px;
+#interface {
+
 }
 
+#message {
+    
+}
+
+#input{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+}
+
+.category {
+    display: flex;
+}
+
+.picto {
+    height: 100px;
+    width: 100px;
+    height: auto;
+    margin: 0.5%;
+}
+
+
+/* connection elements */
 #connect {
     display: flex;
     justify-content: center;

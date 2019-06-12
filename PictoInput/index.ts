@@ -1,34 +1,42 @@
-// import "isopen" as isopen
-// import {post} from 'request'
-// import {get as request} from 'simple-get'
 import {teenyRequest as request} from 'teeny-request'
-import { getImgs, getUrls } from './imgs';
-// import {request} from 'http'
-// import * as fs from 'fs'
+import { imgCategories, idToUrl } from './imgs';
 
 const baseRelay = "https://httprelay.io/link/pictocraft"
 
-const imgUrls = getUrls()
-const imgsContainer = document.getElementById("interface");
-const imgTemplate = imgsContainer.children.item(0) as HTMLInputElement;
-imgsContainer.removeChild(imgTemplate)
+const uiContainer = document.getElementById("interface");
+const imgsContainer = document.getElementById("input");
+const imgTemplate = document.getElementsByClassName("picto").item(0);
+const catTemplate = document.getElementsByClassName("category").item(0);
 
 const connectContainer = document.getElementById("connect");
 const keyEl = document.getElementById("key")
 document.getElementById("submit").onclick = ev => connect(keyEl.nodeValue)
 
-// connect("1234")
+connect("1234")
 
 function connect(key: string){
     connectContainer.style.display = 'none'
 
-    imgUrls.forEach(imgUrl => {
-        let newPicto = imgTemplate.cloneNode() as HTMLInputElement;
-        newPicto.src = imgUrl
-        imgsContainer.appendChild(newPicto)
-    })
+    Object.keys(imgCategories).forEach(cat => {
+        let catEl = catTemplate.cloneNode()
+        imgsContainer.appendChild(catEl)
+        let imgs = imgCategories[cat]
+        Object.keys(imgs).forEach(imgTitle => {
+            let imgId = imgs[imgTitle]
+            let imgEl = imgTemplate.cloneNode() as HTMLInputElement
 
-    imgsContainer.hidden = false;
+            imgEl.id = imgId
+            imgEl.src = idToUrl(imgId)
+            catEl.appendChild(imgEl)
+        })
+    })
+    // imgUrls.forEach(imgUrl => {
+    //     let newPicto = imgTemplate.cloneNode() as HTMLInputElement;
+    //     newPicto.src = imgUrl
+    //     imgsContainer.appendChild(newPicto)
+    // })
+
+    uiContainer.hidden = false;
 
     // request({
     //     url: baseRelay + 'f3fd',
