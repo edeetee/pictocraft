@@ -8,9 +8,11 @@ Soon you will be able to download an easy installer to apply this mod to minecra
 - Random color identifiers for players
 - Translates english into minecraft blocks and aac images
 
-## Example:
+## Examples
 ### 'Can you help me find some glass'
-![example](https://github.com/edeetee/pictocraft/raw/master/images/2019-06-13_17.53.45.png)
+![example1](https://github.com/edeetee/pictocraft/raw/master/images/2019-06-13_17.53.45.png)
+### 'When will it be dawn?'
+![example2](https://github.com/edeetee/pictocraft/raw/master/images/2019-06-13_17.57.58.png)
 
 ## [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
 This mod wouldn't be possible without the use of this existing translation technology.
