@@ -8,12 +8,14 @@ import java.net.UnknownHostException;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Random;
+import java.util.function.Function;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClients;
 
 class InputReciever {
@@ -27,29 +29,51 @@ class InputReciever {
     static final String BaseUrl = "https://httprelay.io/link/pictocraft";
     static final Random rand = new Random();
 
+    interface MessageCallback {
+        void gotMessage(String sentence);
+    }
+
     static final String key = getKey();
 
-    InputReciever() {
+    InputReciever(MessageCallback callback) {
         System.out.println("INPUT KEY: " + key);
 
-        HttpClient httpclient = HttpClients.createDefault();
-        HttpGet get = new HttpGet(BaseUrl + key);
-        
+        // HttpClient httpclient = HttpClients.createDefault();
+        HttpGet get = new HttpGet(BaseUrl + "message" + key);
+        String postUrl = BaseUrl + "connect" + key;
+        System.out.println(postUrl);
+        HttpPost post = new HttpPost(postUrl);
+
         new Thread(new Runnable(){
-        
             @Override
             public void run() {
                 try{
                     while(true){
-                        HttpResponse resp = httpclient.execute(get);
-                        String body = IOUtils.toString(resp.getEntity().getContent(), "UTF-8");
-                        System.out.println("RECEIVED: " + body);
+                        HttpResponse resp = HttpClients.createDefault().execute(post);
+                        System.out.println("responded to connect request");
                     }
                 } catch(IOException e){
                     e.printStackTrace();
                 }
             }
-        }, "InputReciever").start();
+        }, "InputReceiverConnect").start();
+        
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try{
+                    while(true){
+                        HttpResponse resp = HttpClients.createDefault().execute(get);
+                        String body = IOUtils.toString(resp.getEntity().getContent(), "UTF-8");
+                        String text = PictoToText.getText(body);
+                        System.out.println("RECEIVED: " + text);
+                        callback.gotMessage(text);
+                    }
+                } catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }, "InputRecieverMessage").start();
     }
     
     static String getKey(){

@@ -19,7 +19,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 
-public class RequestTranslate {
+public class TextToPicto {
     static final String url = "http://picto.ccl.kuleuven.be/picto.php";
     static final String charSet = "UTF-8";
 

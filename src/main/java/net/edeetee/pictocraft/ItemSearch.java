@@ -82,7 +82,7 @@ public class ItemSearch {
                 // System.out.println("TRY: " + combined);
                 String returned = tryFind(combined);
                 if(returned != null){
-                    // System.out.println("FOUND: " + returned);
+                    System.out.println("FOUNDITEM: " + combined + ": " + returned);
                     words.set(i, returned);
                     if(i+1 < words.size() && i+numWords <= words.size()){
                         words.subList(i+1, i+numWords).clear();

@@ -32,7 +32,7 @@ import net.minecraft.util.Identifier;
 class RenderPicto implements Renderable {
     static Map<String, RenderPicto> cache = new HashMap<>();
 
-    public static RenderPicto questionMark = tryFromURL(RequestTranslate.getPictoUrls("?").get(0));
+    public static RenderPicto questionMark = tryFromURL(TextToPicto.getPictoUrls("?").get(0));
 
     public static RenderPicto tryFromURL(String URL){
         if(cache.containsKey(URL))
@@ -122,7 +122,7 @@ public class PictoLine implements Renderable {
         new Thread(new Runnable(){
             @Override
             public void run() {
-                List<String> imgLinks = RequestTranslate.getPictoUrls(ItemSearch.getWordsAndIds(PictoLine.this.message));
+                List<String> imgLinks = TextToPicto.getPictoUrls(ItemSearch.getWordsAndIds(PictoLine.this.message));
 
                 if(imgLinks != null && imgLinks.size() == 0)
                     System.err.println("NO LINKS RETURNED");

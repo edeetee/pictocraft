@@ -50,22 +50,5 @@ public abstract class DrawChatMixin extends net.minecraft.client.gui.DrawableHel
 		}
 		RenderUtil.pop();
 		RenderUtil.setColor(Color.white);
-
-		// System.out.println(info.isCancellable() ? "Can" : "Cannot" + " Cancel");
-		// this.drawString(, string_1, int_1, int_2, int_3);
-		// this.blit(int_1, int_2, int_3, int_4, int_5, int_6);
-		// System.out.println(this.visibleMessages);
-		// GlStateManager.texImage2D(int_1, int_2, int_3, int_4, int_5, int_6, int_7, int_8, intBuffer_1);
-		// GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-		// this.blit(left, top, 0, 0, width, height);
-		// System.out.println(testTexture);
-		// System.out.println(manager);
-		// Texture tex = manager.getTexture(testTexture);
-		// GlStateManager.bindTexture(int_1);
-		// manager.bindTexture(testTexture);
-		// tex.bindTexture();
-		// System.out.println(tex);
-		// int texId = tex.getGlId();
-		// System.out.println(texId);
 	}
 }

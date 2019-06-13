@@ -8,8 +8,33 @@ body{
 }
 
 #message {
-    
+    display:flex;
+    flex-direction: row;
+
+    border: #4CAF50 5px dashed;
+    padding: 0.5%;
+    align-items: center;
 }
+
+#fakePicto{
+    height: 80px;
+    margin: 1%;
+    width: 80px;
+}
+
+#message .material-icons{
+    margin: 10px;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+#message #delete {
+    margin-left: auto;
+}
+
+/* #message .picto {
+    height: 80px;
+} */
 
 #input{
     display: flex;
@@ -30,9 +55,11 @@ body{
     justify-content: center;
     flex-grow: 1;
 
-    border-color: black;
-    border-width: 1px;
-    border-style: solid;
+    border: black 2px solid;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-top: none;
+    border-right: none;
     padding: 1%;
 }
 
@@ -42,7 +69,7 @@ body{
 }
 
 .picto {
-    margin: 2%;
+    margin: 1%;
     width: 80px;
 
     flex-shrink: 1;
@@ -75,4 +102,17 @@ body{
     text-align: center;
     font-size: 2em;
     width: 4em;
+    text-transform: lowercase;
+}
+
+
+/* utility */
+.noselect{
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }

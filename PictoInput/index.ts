@@ -1,18 +1,26 @@
-import {teenyRequest as request} from 'teeny-request'
-import { imgCategories, idToUrl } from './imgs';
+import { imgCategories, idToUrl } from './imgs'
+import fetch from 'node-fetch'
+const swal = require('sweetalert')
 
 const baseRelay = "https://httprelay.io/link/pictocraft"
 
 const uiContainer = document.getElementById("interface");
 const imgsContainer = document.getElementById("input");
-const imgTemplate = document.getElementsByClassName("picto").item(0);
-const catTemplate = document.getElementsByClassName("category").item(0);
+const imgTemplate = imgsContainer.getElementsByClassName("picto").item(0);
+const catTemplate = imgsContainer.getElementsByClassName("category").item(0);
+
+const message = document.getElementById("message")
+const fakePicto = document.getElementById("fakePicto")
+const deleteEl = document.getElementById("delete")
+const send = document.getElementById("send")
+
+imgTemplate.remove()
+catTemplate.remove()
 
 const connectContainer = document.getElementById("connect");
-const keyEl = document.getElementById("key")
-document.getElementById("submit").onclick = ev => connect(keyEl.nodeValue)
+const keyEl = document.getElementById("key") as HTMLInputElement
+document.getElementById("submit").onclick = () => tryConnect(keyEl.value)
 
-connect("1234")
 loadImgs()
 
 function loadImgs(){
@@ -30,6 +38,9 @@ function loadImgs(){
 
             imgEl.id = imgId
             imgEl.src = idToUrl(imgId)
+            imgEl.value = imgId
+
+            imgEl.onclick = () => addImage(imgEl)
 
             catEl.childNodes[Math.floor(2*i/keys.length)].appendChild(imgEl)
             // catEl.appendChild(imgEl)
@@ -37,15 +48,80 @@ function loadImgs(){
     })
 }
 
-function connect(key: string){
-    connectContainer.style.display = 'none'
-    uiContainer.hidden = false;
+deleteEl.onclick = () => {
+    let pictos = message.getElementsByClassName("picto")
+    let lastPicto = pictos.item(pictos.length-1)
 
-    // request({
-    //     url: baseRelay + 'f3fd',
-    //     body: 'test1234',
-    //     method: 'POST'
-    // }, (err, resp, body) => {
-    //     console.log(resp.statusCode)
-    // })
+    if(lastPicto !== undefined)
+        lastPicto.remove()
+    if(pictos.length === 0)
+        fakePicto.hidden = false;
+}
+
+send.onclick = () => {
+    let pictos = message.querySelectorAll(".picto")
+    let ids = []
+
+    for (let i = 0; i < pictos.length; i++) {
+        const picto = pictos[i] as HTMLInputElement;
+        ids.push(picto.value);
+        picto.remove()
+    }
+
+    fakePicto.hidden = false;
+
+    let body = ids.join(" ")
+    let url = baseRelay + "message" + key
+
+    console.log("sending " + body + " to " + url);
+
+    fetch(url, {
+        body: body,
+        method: 'POST'
+    })
+}
+
+function addImage(el: HTMLInputElement){
+    fakePicto.hidden = true;
+    message.insertBefore(el.cloneNode(), deleteEl);
+}
+
+let key: string;
+async function tryConnect(inKey: string){
+    let controller = new AbortController()
+    setTimeout(() => controller.abort(), 2000)
+
+    let url = baseRelay + "connect" + inKey.toLowerCase();
+    try{
+        let resp = await fetch(url, {
+            method: 'GET',
+            signal: controller.signal
+        })
+
+        connectContainer.style.display = 'none'
+        uiContainer.hidden = false;
+        key = inKey;
+
+    } catch(e) {
+        console.log("Could not connect to " + url)
+        if(inKey.length === 4)
+            swal({
+                title: "Could not connect to " + inKey,
+                text: "Make sure Minecraft is running and the connection key is correct"
+            })
+        else
+            swal({
+                title: inKey.length !== 0 ? inKey + " is not a valid connection key" : "You need connection key",
+                text: "The key can be found in the Minecraft pause menu and will be 4 characters long"
+            })
+    }
+
+    // console.log(resp)
+}
+
+function reqLog(err: any, resp: Response, body: any) {
+    if(err)
+        console.error(err)
+    else
+        console.log(resp)
 }

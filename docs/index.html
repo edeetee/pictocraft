@@ -1,25 +1,29 @@
 <html>
     <head>
-            <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-            <meta content="utf-8" http-equiv="encoding">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link href="main.css" rel="stylesheet" type="text/css">
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="main.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     </head>
 
     <body>
         <div id="connect">
-            <input type="text" id="key" name="key">
+            <input type="text" maxlength="4" id="key" name="key">
             <input type="submit" id="submit" value="Connect">
         </div>
 
         <div id="interface" hidden>
             <div id="message">
-                <div class="category">
-                    <input type="image" value="" class="picto"></input>
-                </div>
+                <div id="fakePicto" class="noselect"></div>
+                <i id="delete" class="material-icons noselect">backspace</i>
+                <i id="send" class="material-icons noselect">send</i>
             </div>
 
             <div id="input">
+                <div class="category">
+                    <input type="image" value="" class="picto noselect"></input>
+                </div>
             </div>
         </div>
 

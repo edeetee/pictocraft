@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.item.Item;
 
@@ -20,12 +21,11 @@ public class Init implements ModInitializer {
 		System.out.println("Hello Fabric world!");
 		ItemSearch.generateMap();
 		
-		// try{
-		// 	Server server = new Server();
-		// } catch (Exception e){
-		// 	e.printStackTrace();
-		// }
-		new InputReciever();
+		new InputReciever(sentence -> {
+			ClientPlayerEntity player = MinecraftClient.getInstance().player;
+			if(player != null)
+				player.sendChatMessage(sentence);
+		});
 	}
 
 	public void test(){
@@ -33,7 +33,7 @@ public class Init implements ModInitializer {
 
 		// System.out.println(ItemSearch.replaceWords("find me some sugar cane"));
 		// System.out.println(ItemSearch.replaceWords("do you have any dirt or sugar cane?"));
-		List<String> testValues = RequestTranslate.getPictoUrls("do you have any dirt or sugar cane?");
+		List<String> testValues = TextToPicto.getPictoUrls("do you have any dirt or sugar cane?");
 		for (String word : testValues) {
 			System.out.println(word);
 			Item item = ItemSearch.idToItem(word);
