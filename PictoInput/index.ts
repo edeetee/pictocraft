@@ -89,7 +89,7 @@ function addImage(el: HTMLInputElement){
 let key: string;
 async function tryConnect(inKey: string){
     let controller = new AbortController()
-    setTimeout(() => controller.abort(), 2000)
+    setTimeout(() => controller.abort(), 4000)
 
     let url = baseRelay + "connect" + inKey.toLowerCase();
     try{

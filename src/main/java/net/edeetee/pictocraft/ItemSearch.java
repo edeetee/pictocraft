@@ -21,6 +21,7 @@ import net.minecraft.client.texture.TextureManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -53,7 +54,7 @@ public class ItemSearch {
         return ((TranslatableComponent)item.getName()).getText().toLowerCase();
     }
 
-    static void generateMap(){
+    static void generateMapExtras(){
         // Registry.ITEM.get
         //sorted to give precidence to longer sentences
         for (int subWords = 0; subWords < 3; subWords++) {
@@ -61,14 +62,29 @@ public class ItemSearch {
                 String rawId = itemToId(item);
 
                 List<String> words = Arrays.asList(getName(item).split(" "));
+
+                //words being cut down must be makings words of multiples
+                if(subWords < words.size() && words.size()-subWords <= 2)
+                    continue;
                 
                 for (int i = 0; i < words.size()-subWords; i++) {
                     String combined = String.join(" ", words.subList(i, i+subWords+1));
                     items.putIfAbsent(combined, rawId);
-                    // System.out.println(combined + ": " + rawId);
+                    System.out.println(combined + ": " + rawId);
                 }
 
             }
+        }
+    }
+
+    static void generateMap(){
+        for (Item item : Registry.ITEM) {
+            if(item == Items.AIR)
+                continue;
+                
+            String rawId = itemToId(item);
+            items.putIfAbsent(getName(item), rawId);
+            System.out.println(getName(item) + ": " + rawId);
         }
     }
 
