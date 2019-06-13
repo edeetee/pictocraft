@@ -1,12 +1,14 @@
 # Pictocraft
 
-Translate text to images inside minecraft
+<!-- Translate multiplayer chat text to images inside minecraft -->
+Adds PECS accessibility into minecraft multiplayer chat. Provides both in-game message translation to images as well as a web interface for PECS input via a tablet or mobile phone, available at https://edeetee.github.io/pictocraft/. Use the key 'test' to try out the interface without the mod.
 
 Soon you will be able to download an easy installer to apply this mod to minecraft.
 
 ## Features
 - Random color identifiers for players
-- Translates english into minecraft blocks and aac images
+- Translates english into minecraft blocks, items and aac images
+- Input interface works on any device with a web browser
 
 ## Examples
 ### 'Can you help me find some glass'
@@ -17,11 +19,9 @@ Soon you will be able to download an easy installer to apply this mod to minecra
 ## [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
 This mod wouldn't be possible without the use of this existing translation technology.
 It would be good to get this running on the host machine, instead of using their server as it does currently if the Demo server goes down eventually.
-It's images are [Sclera Symbols](https://sclera.be/en/vzw/home).
+Its images come from [Sclera Symbols](https://sclera.be/en/vzw/home).
 
 ----
-
-
 
 ## Development
 

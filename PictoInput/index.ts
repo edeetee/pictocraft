@@ -95,7 +95,7 @@ async function tryConnect(inKey: string){
 
     let url = baseRelay + "connect" + inKey.toLowerCase();
     try{
-        if(inKey != "fake"){
+        if(inKey != "fake" && inKey != 'test'){
             await fetch(url, {
                 method: 'GET',
                 signal: controller.signal
