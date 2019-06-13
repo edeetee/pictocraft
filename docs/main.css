@@ -29,25 +29,20 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     flex-grow: 1;
-    /* min-width: 0; */
 
     border-color: black;
     border-width: 1px;
     border-style: solid;
-    padding: 5px;
+    padding: 1%;
 }
 
 .category > *{
-    /* margin: 5px; */
-    /* min-width: 0; */
     display: flex;
     flex-direction: row;
 }
 
 .picto {
-    margin: 5px;
-
-    min-width: 40px;
+    margin: 2%;
     width: 80px;
 
     flex-shrink: 1;
