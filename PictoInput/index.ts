@@ -1,5 +1,6 @@
 import { imgCategories, idToUrl } from './imgs'
 import fetch from 'node-fetch'
+import { connect } from 'tls';
 const swal = require('sweetalert')
 
 const baseRelay = "https://httprelay.io/link/pictocraft"
@@ -17,9 +18,10 @@ const send = document.getElementById("send")
 imgTemplate.remove()
 catTemplate.remove()
 
-const connectContainer = document.getElementById("connect");
+const connectContainer = document.getElementById("connect") as HTMLFormElement;
+connectContainer.onsubmit = ev => {ev.preventDefault(); tryConnect(keyEl.value)}
 const keyEl = document.getElementById("key") as HTMLInputElement
-document.getElementById("submit").onclick = () => tryConnect(keyEl.value)
+// document.getElementById("submit").onclick
 
 loadImgs()
 
@@ -93,10 +95,12 @@ async function tryConnect(inKey: string){
 
     let url = baseRelay + "connect" + inKey.toLowerCase();
     try{
-        let resp = await fetch(url, {
-            method: 'GET',
-            signal: controller.signal
-        })
+        if(inKey != "fake"){
+            await fetch(url, {
+                method: 'GET',
+                signal: controller.signal
+            })
+        }
 
         connectContainer.style.display = 'none'
         uiContainer.hidden = false;

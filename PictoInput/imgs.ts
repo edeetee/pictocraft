@@ -30,17 +30,18 @@ export const imgCategories: stringMap<stringMap<string>> = {
         run: 'lopen',
         timeOut: 'time-out',
     },
-    ideas: {
+    questions: {
+        when: 'wanneer',
+        where: 'waar',
+        why: 'waarom',
+        how: 'hoe',
+    },
+    time: {
         outside: 'buiten',
         late: 'te-laat-klok',
         night: 'nacht',
         dawn: 'ochtend',
         future: 'toekomst',
-        
-        when: 'wanneer',
-        where: 'waar',
-        why: 'waarom',
-        how: 'hoe',
     },
     places: {
         hills: 'akkers',
@@ -49,11 +50,11 @@ export const imgCategories: stringMap<stringMap<string>> = {
         cave: 'grot',
         mine: 'mijn',
         jungle: 'jungle',
-        icebergs: 'ijsberg',
-        snow: 'sneeuw',
     },
     things: {
         tree: 'boom',
+        iceberg: 'ijsberg',
+        snow: 'sneeuw',
         bed: 'bed',
         rails: 'trein-rails',
     }
