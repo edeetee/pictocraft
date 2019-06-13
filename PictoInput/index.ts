@@ -13,29 +13,32 @@ const keyEl = document.getElementById("key")
 document.getElementById("submit").onclick = ev => connect(keyEl.nodeValue)
 
 connect("1234")
+loadImgs()
 
-function connect(key: string){
-    connectContainer.style.display = 'none'
-
+function loadImgs(){
     Object.keys(imgCategories).forEach(cat => {
         let catEl = catTemplate.cloneNode()
         imgsContainer.appendChild(catEl)
         let imgs = imgCategories[cat]
-        Object.keys(imgs).forEach(imgTitle => {
+
+        catEl.appendChild(document.createElement("div"))
+        catEl.appendChild(document.createElement("div"))
+
+        Object.keys(imgs).forEach((imgTitle, i, keys) => {
             let imgId = imgs[imgTitle]
             let imgEl = imgTemplate.cloneNode() as HTMLInputElement
 
             imgEl.id = imgId
             imgEl.src = idToUrl(imgId)
-            catEl.appendChild(imgEl)
+
+            catEl.childNodes[Math.floor(2*i/keys.length)].appendChild(imgEl)
+            // catEl.appendChild(imgEl)
         })
     })
-    // imgUrls.forEach(imgUrl => {
-    //     let newPicto = imgTemplate.cloneNode() as HTMLInputElement;
-    //     newPicto.src = imgUrl
-    //     imgsContainer.appendChild(newPicto)
-    // })
+}
 
+function connect(key: string){
+    connectContainer.style.display = 'none'
     uiContainer.hidden = false;
 
     // request({

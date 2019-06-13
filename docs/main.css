@@ -13,20 +13,37 @@ body{
 
 #input{
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content: stretch; */
+    
     width: 100%;
 }
 
 .category {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-grow: 1;
+
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+}
+
+.category > *{
+    /* margin: 5px; */
+    display: flex;
+    flex-direction: row;
 }
 
 .picto {
-    height: 100px;
-    width: 100px;
-    height: auto;
-    margin: 0.5%;
+    margin: 5px;
+    width: 80px;
+    height: 80px;
+
+    flex-shrink: 1;
 }
 
 

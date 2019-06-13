@@ -12,6 +12,7 @@
       "vmArgs": "-Dfabric.development\u003dtrue",
       "args": " --assetIndex \"1.14.1-1.14\" --assetsDir \"/home/edeetee/.gradle/caches/fabric-loom/assets\""
     },
+    
     // {
     //   "type": "java",
     //   "name": "Minecraft Server",
