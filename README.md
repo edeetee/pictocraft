@@ -8,12 +8,18 @@ Soon you will be able to download an easy installer to apply this mod to minecra
 - Random color identifiers for players
 - Translates english into minecraft blocks and aac images
 
+## Example:
+### 'Can you help me find some glass'
+![example](https://github.com/edeetee/pictocraft/raw/master/images/2019-06-13_17.53.45.png)
+
 ## [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
 This mod wouldn't be possible without the use of this existing translation technology.
 It would be good to get this running on the host machine, instead of using their server as it does currently if the Demo server goes down eventually.
 It's images are [Sclera Symbols](https://sclera.be/en/vzw/home).
 
 ----
+
+
 
 ## Development
 
