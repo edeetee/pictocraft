@@ -11,12 +11,6 @@ import com.mojang.blaze3d.platform.GlStateManager;
 
 import org.lwjgl.BufferUtils;
 
-// import net.minecraft.client.Minecraft;
-// import net.minecraft.client.gui.ScaledResolution;
-// import net.minecraft.client.renderer.Tessellator;
-
-// import org.lwjgl.input.Mouse;
-
 public class RenderUtil {
 
 	private static final int BYTES_PER_PIXEL = 4;//3 for RGB, 4 for RGBA
@@ -61,15 +55,6 @@ public class RenderUtil {
           return textureID;
        }
 
-	// public static void scissorBox(int x, int y, int xend, int yend) {
-	// 	int width = xend - x;
-	// 	int height = yend - y;
-	// 	ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
-	// 	int factor = sr.getScaleFactor();
-	// 	int bottomY = Minecraft.getMinecraft().currentScreen.height - yend;
-	// 	glScissor(x * factor, bottomY * factor, width * factor, height * factor);
-	// }
-
 	public static void setupLineSmooth() {
 		glEnable(GL_BLEND);
 		glDisable(GL_LIGHTING);
@@ -100,19 +85,6 @@ public class RenderUtil {
 		glDisable(GL_SAMPLE_ALPHA_TO_COVERAGE);
 		glPopMatrix();
 	}
-
-	// public static void drawTexturedModalRect(int par1, int par2, int par3, int par4, int par5, int par6) {
-	// 	float var7 = 0.00390625F;
-	// 	float var8 = 0.00390625F;
-	// 	Tessellator var9 = Tessellator.getInstance();
-	// 	WorldRenderer var10 = var9.getWorldRenderer();
-	// 	var10.startDrawingQuads();
-	// 	var10.addVertexWithUV((par1 + 0), (par2 + par6), 0, ((par3 + 0) * var7), ((par4 + par6) * var8));
-	// 	var10.addVertexWithUV((par1 + par5), (par2 + par6), 0, ((par3 + par5) * var7), ((par4 + par6) * var8));
-	// 	var10.addVertexWithUV((par1 + par5), (par2 + 0), 0, ((par3 + par5) * var7), ((par4 + 0) * var8));
-	// 	var10.addVertexWithUV((par1 + 0), (par2 + 0), 0, ((par3 + 0) * var7), ((par4 + 0) * var8));
-	// 	var9.draw();
-	// }
 
 	public static void drawTexturedModalRect(int texId) {
 		glDisable(GL_CULL_FACE);
@@ -236,30 +208,5 @@ public class RenderUtil {
 	public static void setColor(Color c, float alpha) {
 		GlStateManager.color4f(c.getRed() / 255f, c.getGreen() / 255f, c.getBlue() / 255f, alpha);
 	}
-
-	// public static Color toColor(int rgba) {
-	// 	int r = rgba & 0xFF, g = rgba >> 8 & 0xFF, b = rgba >> 16 & 0xFF, a = rgba >> 24 & 0xFF;
-	// 	return new Color(r, g, b, a);
-	// }
-
-	// public static int toRGBA(Color c) {
-	// 	return c.getRed() | c.getGreen() << 8 | c.getBlue() << 16 | c.getAlpha() << 24;
-	// }
-
-	// public static void setColor(int rgba) {
-	// 	int r = rgba & 0xFF, g = rgba >> 8 & 0xFF, b = rgba >> 16 & 0xFF, a = rgba >> 24 & 0xFF;
-	// 	glColor4b((byte) r, (byte) g, (byte) b, (byte) a);
-	// }
-
-	// public static Point calculateMouseLocation() {
-	// 	Minecraft minecraft = Minecraft.getMinecraft();
-	// 	int scale = minecraft.gameSettings.guiScale;
-	// 	if(scale == 0)
-	// 		scale = 1000;
-	// 	int scaleFactor = 0;
-	// 	while(scaleFactor < scale && minecraft.displayWidth / (scaleFactor + 1) >= 320 && minecraft.displayHeight / (scaleFactor + 1) >= 240)
-	// 		scaleFactor++;
-	// 	return new Point(Mouse.getX() / scaleFactor, minecraft.displayHeight / scaleFactor - Mouse.getY() / scaleFactor - 1);
-	// }
 
 }

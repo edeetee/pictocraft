@@ -1,31 +1,20 @@
 package net.edeetee.pictocraft;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.Random;
-import java.util.function.Function;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClients;
 
-class InputReciever {
-    //For other brokers if hivemq fails:
-    //https://github.com/mqtt/mqtt.github.io/wiki/public_brokers
-    //https://diyprojects.io/8-online-mqtt-brokers-iot-connected-objects-cloud/
-
-    /**
-     * Sourced from http://www.mqtt-dashboard.com/
-     */
+class PictoInputReciever {
+    //uses https://httprelay.io
+    
     static final String BaseUrl = "https://httprelay.io/link/pictocraft";
     static final Random rand = new Random();
 
@@ -35,7 +24,7 @@ class InputReciever {
 
     static final String key = getKey();
 
-    InputReciever(MessageCallback callback) {
+    PictoInputReciever(MessageCallback callback) {
         System.out.println("INPUT KEY: " + key);
 
         // HttpClient httpclient = HttpClients.createDefault();

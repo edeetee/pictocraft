@@ -1,18 +1,16 @@
 package net.edeetee.pictocraft;
 
-import java.net.URISyntaxException;
 import java.util.List;
 
-import net.fabricmc.api.ModInitializer;
+import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.item.Item;
 
-public class Init implements ModInitializer {
+public class Init implements ClientModInitializer {
 
 	@Override
-	public void onInitialize() {
+	public void onInitializeClient() {
 		// assets.minecraft.lang
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
@@ -21,7 +19,7 @@ public class Init implements ModInitializer {
 		System.out.println("Hello Fabric world!");
 		ItemSearch.generateMap();
 		
-		new InputReciever(sentence -> {
+		new PictoInputReciever(sentence -> {
 			ClientPlayerEntity player = MinecraftClient.getInstance().player;
 			if(player != null)
 				player.sendChatMessage(sentence);

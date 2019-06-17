@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -14,20 +13,17 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import com.ibm.icu.impl.URLHandler.URLVisitor;
-import com.mojang.blaze3d.platform.GlStateManager;
-
-import org.apache.commons.lang3.ArrayUtils;
-
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.json.ModelTransformation.Type;
-import net.minecraft.client.search.SearchManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.util.Identifier;
+
+interface Renderable{
+    void render();
+}
 
 class RenderPicto implements Renderable {
     static Map<String, RenderPicto> cache = new HashMap<>();
@@ -102,7 +98,7 @@ class RenderItem implements Renderable {
     }
 }
 
-public class PictoLine implements Renderable {
+public class PictoLineRender implements Renderable {
     final public String username;
     final public Color userColor;
     final public String message;
@@ -113,7 +109,7 @@ public class PictoLine implements Renderable {
 
     // private static final TextureManager manager = MinecraftClient.getInstance().getTextureManager();
 
-    private PictoLine(String username, String message){
+    private PictoLineRender(String username, String message){
         this.username = username;
         this.message = message.toLowerCase();
 
@@ -122,7 +118,7 @@ public class PictoLine implements Renderable {
         new Thread(new Runnable(){
             @Override
             public void run() {
-                List<String> imgLinks = TextToPicto.getPictoUrls(ItemSearch.getWordsAndIds(PictoLine.this.message));
+                List<String> imgLinks = TextToPicto.getPictoUrls(ItemSearch.getWordsAndIds(PictoLineRender.this.message));
 
                 if(imgLinks != null && imgLinks.size() == 0)
                     System.err.println("NO LINKS RETURNED");
@@ -180,14 +176,14 @@ public class PictoLine implements Renderable {
         RenderUtil.pop();
     }
 
-    private static List<PictoLine> messages = new ArrayList<>();
+    private static List<PictoLineRender> messages = new ArrayList<>();
 
-    public static List<PictoLine> all(){
+    public static List<PictoLineRender> all(){
         messages.removeIf(line -> line.isLoaded() && (line.getOpacity() <= 0 || line.pictos.size() == 0));
         return messages;
     }
 
-    public static PictoLine tryFrom(Component chat){
+    public static PictoLineRender tryFrom(Component chat){
         Iterator<Component> textLine = chat.iterator();
 
         String username = null;
@@ -208,7 +204,7 @@ public class PictoLine implements Renderable {
         }
 
         if(username != null && message != null){
-            PictoLine cur = new PictoLine(username, message);
+            PictoLineRender cur = new PictoLineRender(username, message);
             System.out.println(cur);
             messages.add(0, cur);
             return cur;
