@@ -43,5 +43,8 @@ Its images come from [Sclera Symbols](https://sclera.be/en/vzw/home).
 ## Future
 - User testing
 - Do translation locally
+- Setting to disable mod
+- Allow editing of grid for individual needs
+- Category navigation by click
 
 ## Thanks to the fabric-mc discord;
