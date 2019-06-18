@@ -1,4 +1,4 @@
-package net.edeetee.pictocraft;
+package edeetee.pictocraft;
 
 import java.util.ArrayList;
 

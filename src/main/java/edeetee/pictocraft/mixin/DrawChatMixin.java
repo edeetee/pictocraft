@@ -1,4 +1,4 @@
-package net.edeetee.pictocraft.mixin;
+package edeetee.pictocraft.mixin;
 
 import java.awt.Color;
 import java.util.List;
@@ -10,9 +10,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.client.gui.hud.ChatHud;
 
-import net.edeetee.pictocraft.RenderUtil;
-
-import net.edeetee.pictocraft.PictoLineRender;
+import edeetee.pictocraft.RenderUtil;
+import edeetee.pictocraft.PictoLineRender;
 
 //TODO: allow users to turn off in game, display code in game
 

@@ -1,4 +1,4 @@
-package net.edeetee.pictocraft;
+package edeetee.pictocraft;
 
 import java.io.IOException;
 import java.net.NetworkInterface;

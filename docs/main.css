@@ -76,6 +76,8 @@ body{
 .picto {
     margin: 1%;
     width: 80px;
+    height: 80px;
+    object-fit: contain;
 
     flex-shrink: 1;
 }
