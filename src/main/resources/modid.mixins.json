@@ -6,7 +6,8 @@
   ],
   "client": [
     "DrawChatMixin",
-    "MessageMixin"
+    "MessageMixin",
+    "LoginInfoMixin"
   ],
   "injectors": {
     "defaultRequire": 1

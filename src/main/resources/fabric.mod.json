@@ -12,6 +12,11 @@
     "sources": "https://github.com/edeetee/pictocraft"
   },
 
+  "contact": {
+    "homepage": "https://github.com/edeetee/pictocraft/blob/master/README.md",
+    "issues": "https://github.com/edeetee/pictocraft/issues"
+  },
+
   "license": "CC0-1.0",
   "icon": "assets/modid/icon.png",
 

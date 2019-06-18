@@ -5,14 +5,16 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Collections;
 import java.util.Random;
+import java.util.Timer;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.time.StopWatch;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClients;
 
-class PictoInputReciever {
+public class PictoInputReceiver {
     //uses https://httprelay.io
     
     static final String BaseUrl = "https://httprelay.io/link/pictocraft";
@@ -22,9 +24,16 @@ class PictoInputReciever {
         void gotMessage(String sentence);
     }
 
-    static final String key = getKey();
+    public static final String key = getKey();
 
-    PictoInputReciever(MessageCallback callback) {
+    // static StopWatch countdown;
+    static Long lastMessage;
+    static final long timeout = 5*60*1000;
+    public static boolean isConnected(){
+        return lastMessage != null && (System.currentTimeMillis()-lastMessage) < timeout;
+    }
+
+    PictoInputReceiver(MessageCallback callback) {
         System.out.println("INPUT KEY: " + key);
 
         // HttpClient httpclient = HttpClients.createDefault();
@@ -40,6 +49,7 @@ class PictoInputReciever {
                     while(true){
                         HttpResponse resp = HttpClients.createDefault().execute(post);
                         System.out.println("responded to connect request");
+                        lastMessage = System.currentTimeMillis();
                     }
                 } catch(IOException e){
                     e.printStackTrace();
@@ -57,6 +67,7 @@ class PictoInputReciever {
                         String text = PictoToText.getText(body);
                         System.out.println("RECEIVED: " + text);
                         callback.gotMessage(text);
+                        lastMessage = System.currentTimeMillis();
                     }
                 } catch(IOException e){
                     e.printStackTrace();

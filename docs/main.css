@@ -25,7 +25,7 @@ body{
 }
 
 #message .material-icons{
-    margin: 10px;
+    padding: 5px 10px;
     font-size: 40px;
     /* font-size: 8vw; */
     cursor: pointer;
@@ -35,9 +35,11 @@ body{
     margin-left: auto;
 }
 
-/* #message .picto {
-    height: 80px;
-} */
+#message .picto {
+    width: 0;
+    flex-grow: 1;
+    max-width: 80px;
+}
 
 #input{
     display: flex;
@@ -76,7 +78,6 @@ body{
 .picto {
     margin: 1%;
     width: 80px;
-    height: 80px;
     object-fit: contain;
 
     flex-shrink: 1;

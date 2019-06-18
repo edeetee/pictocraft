@@ -19,7 +19,7 @@ public class Init implements ModInitializer {
 		System.out.println("Hello Fabric world!");
 		ItemSearch.generateMap();
 		
-		new PictoInputReciever(sentence -> {
+		new PictoInputReceiver(sentence -> {
 			ClientPlayerEntity player = MinecraftClient.getInstance().player;
 			if(player != null)
 				player.sendChatMessage(sentence);
