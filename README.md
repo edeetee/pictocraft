@@ -12,7 +12,9 @@ Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system)
 
 ## Installation
 
-You can [download the Pictocraft installer from here](https://github.com/edeetee/pictocraft-installer/blob/master/README.md) or if you already have [fabric](https://fabricmc.net/) installed, you can download the latest release [from this repo](https://github.com/edeetee/pictocraft/releases).
+[Download the Pictocraft installer from here](https://github.com/edeetee/pictocraft-installer/blob/master/README.md)
+
+Alternatively, if you already have [fabric](https://fabricmc.net/) installed, you can download the latest release [from this repo](https://github.com/edeetee/pictocraft/releases).
 
 ## Examples
 ### 'Can you help me find some glass'
