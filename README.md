@@ -6,12 +6,11 @@ Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system)
 
 You can [download the Pictocraft installer from here](https://github.com/edeetee/pictocraft-installer/blob/master/README.md) or if you already have [fabric](https://fabricmc.net/) installed, you can download the latest release [from this repo](https://github.com/edeetee/pictocraft/releases).
 
-
 ## Features
-- Web interface for
+- Translates received messages into PCS using [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
+- Web interface for input on a touchscreen device
+- Displays mentioned minecraft blocks and items
 - Random color identifiers for players
-- Translates english into minecraft blocks, items and aac images
-- Input interface works on any device with a web browser
 
 ## Examples
 ### 'Can you help me find some glass'
