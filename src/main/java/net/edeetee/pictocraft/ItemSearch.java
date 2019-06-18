@@ -70,7 +70,7 @@ public class ItemSearch {
                 for (int i = 0; i < words.size()-subWords; i++) {
                     String combined = String.join(" ", words.subList(i, i+subWords+1));
                     items.putIfAbsent(combined, rawId);
-                    System.out.println(combined + ": " + rawId);
+                    // System.out.println(combined + ": " + rawId);
                 }
 
             }
