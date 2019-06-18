@@ -16,6 +16,8 @@ You can [download the Pictocraft installer from here](https://github.com/edeetee
 ## Examples
 ### 'Can you help me find some glass'
 ![example1](https://github.com/edeetee/pictocraft/raw/master/images/2019-06-13_17.53.45.png)
+### PCS Input Interface on iPad
+![example2](https://github.com/edeetee/pictocraft/raw/master/images/inputScreenshot.png)
 ### 'When will it be dawn?'
 ![example2](https://github.com/edeetee/pictocraft/raw/master/images/2019-06-13_17.57.58.png)
 
