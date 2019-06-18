@@ -127,6 +127,7 @@ a {
 #header{
     margin-bottom: auto;
     align-self: flex-start;
+    font-size: 24px;
 }
 
 #footer {
