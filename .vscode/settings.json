@@ -13,7 +13,7 @@
         "gradle": true,
         ".gradle": true,
         ".settings": true,
-        "**/node_modules": false
+        "**/node_modules": false,
     },
     "git.ignoreLimitWarning": true,
 }

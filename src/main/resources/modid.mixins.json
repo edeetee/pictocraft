@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "net.edeetee.pictocraft.mixin",
+  "package": "edeetee.pictocraft.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],

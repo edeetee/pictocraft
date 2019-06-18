@@ -23,6 +23,8 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+	compile 'net.fabricmc:fabric-installer:+'
+
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
 }
@@ -55,6 +57,7 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 	from sourceSets.main.allSource
 }
 
+
 jar {
 	from "LICENSE"
 }
@@ -79,3 +82,4 @@ publishing {
 		// mavenLocal()
 	}
 }
+

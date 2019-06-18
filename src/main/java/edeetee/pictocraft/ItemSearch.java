@@ -1,29 +1,15 @@
-package net.edeetee.pictocraft;
+package edeetee.pictocraft;
 
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-import net.minecraft.block.Block;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.texture.Texture;
-import net.minecraft.client.texture.TextureManager;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class ItemSearch {
@@ -77,6 +63,7 @@ public class ItemSearch {
         }
     }
 
+    //TODO: make this faster, maybe cache it?
     static void generateMap(){
         for (Item item : Registry.ITEM) {
             if(item == Items.AIR)
