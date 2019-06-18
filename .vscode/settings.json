@@ -9,7 +9,6 @@
         "**/.DS_Store": true,
         
         "bin": true,
-        "build": true,
         "gradle": true,
         ".gradle": true,
         ".settings": true,

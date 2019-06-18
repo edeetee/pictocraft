@@ -2,7 +2,6 @@ package edeetee.pictocraft;
 
 import java.util.List;
 
-import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;

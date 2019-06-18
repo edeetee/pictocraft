@@ -71,7 +71,7 @@ public class ItemSearch {
                 
             String rawId = itemToId(item);
             items.putIfAbsent(getName(item), rawId);
-            System.out.println(getName(item) + ": " + rawId);
+            // System.out.println(getName(item) + ": " + rawId);
         }
     }
 

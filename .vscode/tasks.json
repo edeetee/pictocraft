@@ -10,7 +10,7 @@
                 "isDefault": true
             },
             "type": "shell",
-            "command": "./gradlew build"
+            "command": "./gradlew remapJar"
         }
     ]
 }
