@@ -4,13 +4,15 @@
 
 Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system) [AAC](https://en.wikipedia.org/wiki/Augmentative_and_alternative_communication) to minecraft multiplayer. Provides both in-game message translation to [Sclera](https://sclera.be/en/vzw/home) images as well as a web interface for PECS input via a tablet or mobile phone, available at https://edeetee.github.io/pictocraft/.
 
-You can [download the Pictocraft installer from here](https://github.com/edeetee/pictocraft-installer/blob/master/README.md) or if you already have [fabric](https://fabricmc.net/) installed, you can download the latest release [from this repo](https://github.com/edeetee/pictocraft/releases).
-
 ## Features
 - Translates received messages into PCS using [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
 - Web interface for input on a touchscreen device
 - Displays mentioned minecraft blocks and items
 - Random color identifiers for players
+
+## Installation
+
+You can [download the Pictocraft installer from here](https://github.com/edeetee/pictocraft-installer/blob/master/README.md) or if you already have [fabric](https://fabricmc.net/) installed, you can download the latest release [from this repo](https://github.com/edeetee/pictocraft/releases).
 
 ## Examples
 ### 'Can you help me find some glass'
