@@ -122,15 +122,16 @@ h1{
 a {
     color: rgb(78, 78, 78);
     padding: 10px;
-    align-self: flex-end;
 }
 
 #header{
     margin-bottom: auto;
+    align-self: flex-start;
 }
 
 #footer {
     margin-top: auto;
+    align-self: flex-end;
 }
 
 
