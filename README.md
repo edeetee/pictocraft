@@ -2,7 +2,7 @@
 
 
 
-Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system) [AAC](https://en.wikipedia.org/wiki/Augmentative_and_alternative_communication) to minecraft multiplayer. Provides both in-game message translation to [Sclera](https://sclera.be/en/vzw/home) images as well as a web interface for PECS input via a tablet or mobile phone, available at https://edeetee.github.io/pictocraft/.
+Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system) [AAC](https://en.wikipedia.org/wiki/Augmentative_and_alternative_communication) to minecraft Java multiplayer. Provides both in-game message translation to [Sclera](https://sclera.be/en/vzw/home) images as well as a web interface for PECS input via a tablet or mobile phone, available at https://edeetee.github.io/pictocraft/.
 
 ## Features
 - Translates received messages into PCS using [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
@@ -11,6 +11,8 @@ Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system)
 - Random color identifiers for players
 
 ## Installation
+
+Requires Minecraft Java Edition 1.14+
 
 [Download the Pictocraft installer from here](https://github.com/edeetee/pictocraft-installer/blob/master/README.md)
 
