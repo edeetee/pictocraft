@@ -2,11 +2,11 @@
 
 
 
-Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system) [AAC](https://en.wikipedia.org/wiki/Augmentative_and_alternative_communication) to minecraft Java multiplayer. Provides both in-game message translation to [Sclera](https://sclera.be/en/vzw/home) images as well as a web interface for PECS input via a tablet or mobile phone, available at https://edeetee.github.io/pictocraft/.
+Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system) [AAC](https://en.wikipedia.org/wiki/Augmentative_and_alternative_communication) (image based communication) to Minecraft Java multiplayer. Provides both in-game message translation to [Sclera](https://sclera.be/en/vzw/home) images as well as a web interface for PECS input via a tablet or mobile phone, available at https://edeetee.github.io/pictocraft/.
 
 ## Features
-- Translates received messages into PCS using [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
-- Web interface for input on a touchscreen device
+- Translates multiplayer messages into PCS images using [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
+- [Web interface](https://edeetee.github.io/pictocraft/) for message input on a touchscreen device
 - Displays mentioned minecraft blocks and items
 - Random color identifiers for players
 
@@ -28,27 +28,13 @@ Alternatively, if you already have [fabric](https://fabricmc.net/) installed, yo
 
 # How does it work?
 ## [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
-This mod wouldn't be possible without the use of this existing translation technology.
-It would be good to get this running on the host machine, instead of using their server as it does currently if the Demo server goes down eventually.
-Its images come from [Sclera Symbols](https://sclera.be/en/vzw/home).
+This mod wouldn't be possible without this translation technology. Its images are [Sclera Symbols](https://sclera.be/en/vzw/home).
+## [Fabric-mc](https://fabricmc.net/)
+Fabric is a set of java programs that let us program mods for minecraft mostly version-independent.
 
-----
+#### Special thanks to the fabric-mc discord
+[Development.md](DEVELOPMENT.md)
 
-# Development
+---
 
-[video example](https://photos.app.goo.gl/rG3nujY5LnPR7PsF8)
-
-## Input Development
-
-- Grid systems are easier to read
-- Colored pictos are more enjoyable
-- Most kids are used to navigating through categories by clicking on a general icon
-
-## Future
-- User testing
-- Do translation locally
-- Setting to disable mod
-- Allow editing of grid for individual needs
-- Category navigation by click
-
-## Thanks to the fabric-mc discord;
+## If you encounter any problems or want to give suggestions, please contact me [at my email address](mailto:edeetee@gmail.com) or make a [github issue](https://github.com/edeetee/pictocraft/issues)
