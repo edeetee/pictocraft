@@ -14,7 +14,7 @@ Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system)
 
 Tested on Minecraft Java Edition 1.14+
 
-If you already have [fabric](https://fabricmc.net/) installed, download the latest release [from this repo](https://github.com/edeetee/pictocraft/releases).
+Alternatively, [download the latest release](https://github.com/edeetee/pictocraft/releases) if you already have [fabric](https://fabricmc.net/) installed.
 
 ## Examples
 ### 'Can you help me find some glass'
