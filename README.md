@@ -10,7 +10,7 @@ Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system)
 
 ## Installation
 
-### [Download the Pictocraft installer from here](https://github.com/edeetee/pictocraft-installer/blob/master/README.md)
+### [Download the Pictocraft installer](https://github.com/edeetee/pictocraft-installer/blob/master/README.md)
 
 Tested on Minecraft Java Edition 1.14+
 
