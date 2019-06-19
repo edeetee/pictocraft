@@ -9,7 +9,9 @@
 - Most kids are used to navigating through categories by clicking on a general icon
 
 ## Future desired features
+
 - ### Support alternate pictograph sets
+- Fit received message to screen width
 - User testing
 - Do translation locally
 - Setting to disable mod

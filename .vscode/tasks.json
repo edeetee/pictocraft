@@ -11,6 +11,15 @@
             },
             "type": "shell",
             "command": "./gradlew remapJar"
+        },
+        {
+            "type": "npm",
+            "label": "watch-web",
+            "script": "watch",
+            "path": "web-input/",
+            "problemMatcher": [
+                "$gulp-tsc"
+            ]
         }
     ]
 }

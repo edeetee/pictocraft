@@ -20,11 +20,11 @@ Alternatively, if you already have [fabric](https://fabricmc.net/) installed, yo
 
 ## Examples
 ### 'Can you help me find some glass'
-![translation example 1](https://github.com/edeetee/pictocraft/raw/master/images/2019-06-13_17.53.45.png)
+![translation example 1](images/2019-06-13_17.53.45.png)
 ### PCS Input Interface on iPad
-![PCS example](https://github.com/edeetee/pictocraft/raw/master/images/inputScreenshot.png)
+![PCS example](images/inputScreenshot.png)
 ### 'When will it be dawn?'
-![translation example 2](https://github.com/edeetee/pictocraft/raw/master/images/2019-06-13_17.57.58.png)
+![translation example 2](images/2019-06-13_17.57.58.png)
 
 # How does it work?
 ## [Text2Picto](http://picto.ccl.kuleuven.be/index.php)

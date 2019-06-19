@@ -25,6 +25,13 @@ const keyEl = document.getElementById("key") as HTMLInputElement
 
 loadImgs()
 
+const url = new URL(window.location.href)
+const k = url.searchParams.get("k")
+if(k.length !== null){
+    keyEl.value = k;
+    tryConnect(k)
+}
+
 function loadImgs(){
     Object.keys(imgCategories).forEach(cat => {
         let catEl = catTemplate.cloneNode()
@@ -110,15 +117,16 @@ async function tryConnect(inKey: string){
         console.log("Could not connect to " + url)
         if(inKey.length === 4)
             swal({
-                title: "Could not connect to " + inKey,
-                text: "Make sure Minecraft is running and the connection key is correct"
+                title: "Could not connect to '" + inKey + "'",
+                text: "Make sure Minecraft is running and you have copied the key from the pause screen"
             })
         else
             swal({
-                title: inKey.length !== 0 ? inKey + " is not a valid connection key" : "You need connection key",
+                title: inKey.length !== 0 ? "'"+ inKey + "' is not a valid connection key" : "You need a connection key",
                 text: "The key can be found in the Minecraft pause menu and will be 4 characters long"
             })
     }
+    console.log('finally')
 
     // console.log(resp)
 }
