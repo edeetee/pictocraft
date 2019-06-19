@@ -1,8 +1,6 @@
 # ![logo](https://github.com/edeetee/pictocraft/raw/master/src/main/resources/assets/modid/icon.png) Pictocraft
 
-
-
-Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system) [AAC](https://en.wikipedia.org/wiki/Augmentative_and_alternative_communication) (image based communication) to Minecraft Java multiplayer. Provides both in-game message translation to [Sclera](https://sclera.be/en/vzw/home) images as well as a web interface for PECS input via a tablet or mobile phone, available at https://edeetee.github.io/pictocraft/.
+Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system) [AAC](https://en.wikipedia.org/wiki/Augmentative_and_alternative_communication) (image based alternate communication) to Minecraft Java multiplayer. Provides both in-game message translation to [Sclera](https://sclera.be/en/vzw/home) images as well as a web interface for PECS input via a tablet or mobile phone, available at https://edeetee.github.io/pictocraft/.
 
 ## Features
 - Translates multiplayer messages into PCS images using [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
@@ -14,17 +12,18 @@ Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system)
 
 Requires Minecraft Java Edition 1.14+
 
-[Download the Pictocraft installer from here](https://github.com/edeetee/pictocraft-installer/blob/master/README.md)
+### [Download the Pictocraft installer from here](https://github.com/edeetee/pictocraft-installer/blob/master/README.md)
 
-Alternatively, if you already have [fabric](https://fabricmc.net/) installed, you can download the latest release [from this repo](https://github.com/edeetee/pictocraft/releases).
+If you already have [fabric](https://fabricmc.net/) installed, download the latest release [from this repo](https://github.com/edeetee/pictocraft/releases).
 
 ## Examples
 ### 'Can you help me find some glass'
 ![translation example 1](https://github.com/edeetee/pictocraft/raw/master/images/2019-06-13_17.53.45.png)
-### PCS Input Interface on iPad
-![PCS example](https://github.com/edeetee/pictocraft/raw/master/images/inputScreenshot.png)
 ### 'When will it be dawn?'
 ![translation example 2](https://github.com/edeetee/pictocraft/raw/master/images/2019-06-13_17.57.58.png)
+### PCS Input Interface on iPad
+![PCS example](https://github.com/edeetee/pictocraft/raw/master/images/inputScreenshot.png)
+#### Test it on your device by going to https://edeetee.github.io/pictocraft/ and using key 'test'
 
 # How does it work?
 ## [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
