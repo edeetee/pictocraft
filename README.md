@@ -10,9 +10,9 @@ Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system)
 
 ## Installation
 
-Requires Minecraft Java Edition 1.14+
-
 ### [Download the Pictocraft installer from here](https://github.com/edeetee/pictocraft-installer/blob/master/README.md)
+
+Tested on Minecraft Java Edition 1.14+
 
 If you already have [fabric](https://fabricmc.net/) installed, download the latest release [from this repo](https://github.com/edeetee/pictocraft/releases).
 
