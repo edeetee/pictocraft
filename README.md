@@ -1,8 +1,6 @@
 # ![logo](https://github.com/edeetee/pictocraft/raw/master/src/main/resources/assets/modid/icon.png) Pictocraft
 
-
-
-Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system) [AAC](https://en.wikipedia.org/wiki/Augmentative_and_alternative_communication) (image based communication) to Minecraft Java multiplayer. Provides both in-game message translation to [Sclera](https://sclera.be/en/vzw/home) images as well as a web interface for PECS input via a tablet or mobile phone, available at https://edeetee.github.io/pictocraft/.
+Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system) [AAC](https://en.wikipedia.org/wiki/Augmentative_and_alternative_communication) (image based alternate communication) to Minecraft Java multiplayer. Provides in-game message translation to [Sclera](https://sclera.be/en/vzw/home) images as well as a web interface for PECS input on a tablet or mobile phone, available at https://edeetee.github.io/pictocraft/.
 
 ## Features
 - Translates multiplayer messages into PCS images using [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
@@ -12,19 +10,20 @@ Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system)
 
 ## Installation
 
-Requires Minecraft Java Edition 1.14+
+### [Download the Pictocraft installer](https://github.com/edeetee/pictocraft-installer/blob/master/README.md)
 
-[Download the Pictocraft installer from here](https://github.com/edeetee/pictocraft-installer/blob/master/README.md)
+Tested on Minecraft Java Edition 1.14+
 
-Alternatively, if you already have [fabric](https://fabricmc.net/) installed, you can download the latest release [from this repo](https://github.com/edeetee/pictocraft/releases).
+Alternatively, [download the latest release](https://github.com/edeetee/pictocraft/releases) if you already have [fabric](https://fabricmc.net/) installed.
 
 ## Examples
 ### 'Can you help me find some glass'
 ![translation example 1](images/2019-06-13_17.53.45.png)
-### PCS Input Interface on iPad
-![PCS example](images/inputScreenshot.png)
 ### 'When will it be dawn?'
 ![translation example 2](images/2019-06-13_17.57.58.png)
+### PCS Input Interface on iPad
+![PCS example](images/inputScreenshot.png)
+#### Test it on your device by going to https://edeetee.github.io/pictocraft/ and using key 'test'
 
 # How does it work?
 ## [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
@@ -37,4 +36,4 @@ Fabric is a set of java programs that let us program mods for minecraft mostly v
 
 ---
 
-## If you encounter any problems or want to give suggestions, please contact me [at my email address](mailto:edeetee@gmail.com) or make a [github issue](https://github.com/edeetee/pictocraft/issues)
+## If you encounter any problems or want to give suggestions, please contact me at [my email address](mailto:edeetee@gmail.com) or make [a github issue](https://github.com/edeetee/pictocraft/issues)
