@@ -2,6 +2,8 @@
 
 [video example](https://photos.app.goo.gl/rG3nujY5LnPR7PsF8)
 
+Open to new issues and pull requests
+
 ## Input Development
 
 - Grid systems are easier to read
