@@ -4,11 +4,11 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.Font;
 import net.minecraft.client.font.TextRenderer;
 
-public class InfoRenderer {
+public class KeyRenderer {
     static final TextRenderer renderer = MinecraftClient.getInstance().textRenderer;
     static final float padding = 10;
     static final float scale = 1.5f;
-    static final String webMessage = "AAC input: https://edeetee.github.io/pictocraft/";
+    static final String webMessage = "AAC input: https://edeetee.github.io/pictocraft?k="+PictoInputReceiver.key;
     static final String connectedText = PictoInputReceiver.key + " - CONNECTED!";
 
     public static void render(){

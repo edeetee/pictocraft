@@ -10,7 +10,8 @@
                 "isDefault": true
             },
             "type": "shell",
-            "command": "./gradlew remapJar"
+            "command": "./gradlew remapJar",
+            "problemMatcher": []
         },
         {
             "type": "npm",
