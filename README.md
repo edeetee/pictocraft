@@ -37,3 +37,5 @@ Fabric is a set of java programs that let us program mods for minecraft mostly v
 ---
 
 ## If you encounter any problems or want to give suggestions, please contact me at [my email address](mailto:edeetee@gmail.com) or make [a github issue](https://github.com/edeetee/pictocraft/issues)
+
+### [Made by Edward Taylor](https://edeetee.github.io/)
