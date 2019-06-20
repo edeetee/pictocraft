@@ -12,6 +12,8 @@ Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system)
 
 ### [Download the Pictocraft installer](https://github.com/edeetee/pictocraft-installer/blob/master/README.md)
 
+Messages sent from other players will be displayed as PCS images and the Minecraft pause screen will display information on how to connect to your touch device.
+
 Tested on Minecraft Java Edition 1.14+
 
 Alternatively, [download the latest release](https://github.com/edeetee/pictocraft/releases) if you already have [fabric](https://fabricmc.net/) installed.
