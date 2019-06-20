@@ -25,10 +25,10 @@ Alternatively, [download the latest release](https://github.com/edeetee/pictocra
 ![PCS example](images/inputScreenshot.png)
 #### Test it on your device by going to https://edeetee.github.io/pictocraft/ and using key 'test'
 
-# How does it work?
-## [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
+## How does it work?
+### [Text2Picto](http://picto.ccl.kuleuven.be/index.php)
 This mod wouldn't be possible without this translation technology. Its images are [Sclera Symbols](https://sclera.be/en/vzw/home).
-## [Fabric-mc](https://fabricmc.net/)
+### [Fabric-mc](https://fabricmc.net/)
 Fabric is a set of java programs that let us program mods for minecraft mostly version-independent.
 
 #### Special thanks to the fabric-mc discord
