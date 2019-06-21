@@ -13,6 +13,7 @@ Open to new issues and pull requests
 ## Future desired features
 
 - ### Support alternate pictograph sets
+- Optionally display text in Minecraft and web input
 - Fit received message to screen width
 - User testing
 - Do translation locally
