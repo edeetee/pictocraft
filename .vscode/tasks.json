@@ -10,7 +10,17 @@
                 "isDefault": true
             },
             "type": "shell",
-            "command": "./gradlew remapJar"
+            "command": "./gradlew remapJar",
+            "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "label": "watch-web",
+            "script": "watch",
+            "path": "web-input/",
+            "problemMatcher": [
+                "$gulp-tsc"
+            ]
         }
     ]
 }

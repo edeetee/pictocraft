@@ -120,14 +120,14 @@ h1{
 }
 
 a {
-    color: rgb(78, 78, 78);
+    color: rgb(138, 138, 138);
     padding: 10px;
+    font-size: 22px;
 }
 
 #header{
     margin-bottom: auto;
     align-self: flex-start;
-    font-size: 24px;
 }
 
 #footer {
