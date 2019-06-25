@@ -1,4 +1,4 @@
-# ![logo](https://github.com/edeetee/pictocraft/raw/master/src/main/resources/assets/modid/icon.png) Pictocraft
+# ![logo](https://github.com/edeetee/pictocraft/raw/master/src/main/resources/assets/pictocraft/icon.png) Pictocraft
 
 Adds [PECS](https://en.wikipedia.org/wiki/Picture_exchange_communication_system) [AAC](https://en.wikipedia.org/wiki/Augmentative_and_alternative_communication) (image based alternate communication) to Minecraft Java multiplayer. Provides in-game message translation to [Sclera](https://sclera.be/en/vzw/home) images as well as a web interface for PECS input on a tablet or mobile phone, available at https://edeetee.github.io/pictocraft/.
 

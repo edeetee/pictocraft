@@ -8,14 +8,10 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.item.Item;
 
-public class Init implements ClientModInitializer {
-
-	// @Override
-	// public void onInitialize() {
-	// }
+public class Init implements ModInitializer {
 
 	@Override
-	public void onInitializeClient() {
+	public void onInitialize() {
 		// assets.minecraft.lang
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
