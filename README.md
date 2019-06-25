@@ -25,7 +25,7 @@ Alternatively, [download the latest release](https://github.com/edeetee/pictocra
 ![translation example 2](images/2019-06-13_17.57.58.png)
 ### PCS Input Interface on iPad
 ![PCS example](images/inputScreenshot.png)
-#### Test it on your device by going to https://edeetee.github.io/pictocraft?test
+#### Test it on your device by going to https://edeetee.github.io/pictocraft?k=test
 
 ## How does it work?
 ### [Text2Picto](http://picto.ccl.kuleuven.be/index.php)

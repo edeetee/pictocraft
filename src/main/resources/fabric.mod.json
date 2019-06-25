@@ -30,6 +30,10 @@
     "pictocraft.mixins.json"
   ],
 
+  "custom": {
+    "modmenu:clientsideOnly": true
+  },
+
   "requires": {
     "fabricloader": ">=0.4.0",
     "fabric": "*"
