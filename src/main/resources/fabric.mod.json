@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "pictocraft",
   "version": "${version}",
 
   "name": "Pictocraft",
@@ -18,7 +18,7 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/pictocraft/icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -27,7 +27,7 @@
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "pictocraft.mixins.json"
   ],
 
   "requires": {

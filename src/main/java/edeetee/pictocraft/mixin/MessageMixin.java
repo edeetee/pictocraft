@@ -16,6 +16,6 @@ public abstract class MessageMixin {
         // System.out.println(message.getMessage().toString());
         // System.out.println(message.getLocation());
         PictoLineRender.tryFrom(component_1);
-	}
-	
+    }
+    
 }
