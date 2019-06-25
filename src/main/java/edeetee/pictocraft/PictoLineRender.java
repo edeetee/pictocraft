@@ -18,8 +18,7 @@ import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.json.ModelTransformation.Type;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.text.Text;
 
 interface Renderable{
     void render();
@@ -162,7 +161,7 @@ public class PictoLineRender implements Renderable {
     public void render() {
         RenderUtil.push();
         float opacity = getOpacity();
-        RenderUtil.drawRect(userColor, 0.2f, opacity, opacity*0.8f);
+        RenderUtil.drawRect(userColor, 0.2f, opacity, 1f);
         RenderUtil.translate(1.3f, 0);
         // RenderUtil.setColor(Color.WHITE, opacity);
         for (Renderable picto : pictos) {
@@ -183,17 +182,15 @@ public class PictoLineRender implements Renderable {
         return messages;
     }
 
-    public static PictoLineRender tryFrom(Component chat){
-        Iterator<Component> textLine = chat.iterator();
+    public static PictoLineRender tryFrom(Text chat){
+        Iterator<Text> textLine = chat.iterator();
 
         String username = null;
         String message = null;
 
         for (int i = 0; textLine.hasNext(); i++) {
-            TextComponent comp = (TextComponent)textLine.next();
-            String value = comp.getText();
-
-            // System.out.println(i + ": " + comp);
+            Text comp = textLine.next();
+            String value = comp.asString();
 
             if(1 < value.length()){
                 if(i == 1)

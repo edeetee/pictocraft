@@ -50,13 +50,13 @@ public class TextToPicto {
             Node sib = br.nextSibling();
             while(sib != null){
                 // System.out.println(sib);
-                if(sib.nodeName() == "#text" && StringUtils.isNotBlank(sib.toString())){
+                if(sib.nodeName().equals("#text") && StringUtils.isNotBlank(sib.toString())){
                     String[] subWords = sib.toString().split(" ");
                     for (String word : subWords) {
                         if(StringUtils.isNotBlank(word))
                             list.add(word);
                     }
-                } else if(sib.nodeName() == "img"){
+                } else if(sib.nodeName().equals("img")){
                     list.add(sib.attr("src"));
                 }
                 sib = sib.nextSibling();

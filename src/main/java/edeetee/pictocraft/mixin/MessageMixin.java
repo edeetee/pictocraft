@@ -12,10 +12,10 @@ import edeetee.pictocraft.PictoLineRender;
 public abstract class MessageMixin {
 
     @Inject(method = "onChatMessage", at = @At("HEAD"))
-    public void preChatMessage(net.minecraft.network.chat.ChatMessageType chatMessageType_1, net.minecraft.network.chat.Component component_1, CallbackInfo info) {
+    public void preChatMessage(net.minecraft.network.MessageType chatMessageType_1, net.minecraft.text.Text messageText, CallbackInfo info) {
         // System.out.println(message.getMessage().toString());
         // System.out.println(message.getLocation());
-        PictoLineRender.tryFrom(component_1);
+        PictoLineRender.tryFrom(messageText);
     }
     
 }

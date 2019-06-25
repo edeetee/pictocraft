@@ -18,7 +18,9 @@ public class Init implements ModInitializer {
 		// Proceed with mild caution.
 		
 		System.out.println("Hello Fabric world!");
-		ItemSearch.generateMap();
+		// String.join(" ", ItemSearch.getWordsAndIds("I love diamonds and bones and glass and plank and oak logs"));
+		// String.join(" ", ItemSearch.getWordsAndIds("Hi how are you none of this should match, I'm just seeing how long this takes."));
+		// System.exit(0);
 		
 		new PictoInputReceiver(sentence -> {
 			ClientPlayerEntity player = MinecraftClient.getInstance().player;

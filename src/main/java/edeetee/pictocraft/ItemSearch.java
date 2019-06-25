@@ -7,23 +7,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.registry.Registry;
 
 public class ItemSearch {
-    static Map<String, String> items = new HashMap<>();
-
-    static String tryFind(String text){
-        return items.get(text);
-        // ItemGroup.SEARCH.
-        // SearchManager manager = new SearchManager();
-        // manager.apply(;
-    }
-
-    static final String resourcePath = "/assets/minecraft/lang/en_us.json";
-    static final InputStream resource = ItemSearch.class.getResourceAsStream(resourcePath);
 
     static String itemToId(Item item){
         return "id-" + Integer.toString(Item.getRawId(item));
@@ -37,46 +27,60 @@ public class ItemSearch {
     }
 
     static String getName(Item item){
-        return ((TranslatableComponent)item.getName()).getText().toLowerCase();
+        return item.getName().asString().toLowerCase();
     }
 
-    static void generateMapExtras(){
-        // Registry.ITEM.get
-        //sorted to give precidence to longer sentences
-        for (int subWords = 0; subWords < 3; subWords++) {
-            for (Item item : Registry.ITEM) {
-                String rawId = itemToId(item);
+    static String tryFind(String text){
+        String rawId = null;
 
-                List<String> words = Arrays.asList(getName(item).split(" "));
+        if(text.lastIndexOf("s") == text.length()-1)
+            rawId = items.get(text.substring(0, text.length()-1));
 
-                //words being cut down must be makings words of multiples
-                if(subWords < words.size() && words.size()-subWords <= 2)
-                    continue;
-                
-                for (int i = 0; i < words.size()-subWords; i++) {
-                    String combined = String.join(" ", words.subList(i, i+subWords+1));
-                    items.putIfAbsent(combined, rawId);
-                    // System.out.println(combined + ": " + rawId);
-                }
+        if(rawId == null)
+            rawId = items.get(text);
 
-            }
-        }
+        return rawId;
     }
 
-    //TODO: make this faster, maybe cache it?
-    static void generateMap(){
+
+    static Map<String, String> items = genMap();
+    static Map<String, String> genMap(){
+        Map<String, String> items = new HashMap<>();
         for (Item item : Registry.ITEM) {
             if(item == Items.AIR)
                 continue;
-                
+
             String rawId = itemToId(item);
-            items.putIfAbsent(getName(item), rawId);
-            // System.out.println(getName(item) + ": " + rawId);
+            String name = getName(item);
+            if(name.lastIndexOf("s") == name.length()-1)
+                name = name.substring(0, name.length()-1);
+
+            items.putIfAbsent(name, rawId);
+
+            List<String> words = Arrays.asList(name.split(" "));
+
+            //add words only from end (quarts stair, smooth quarts stair. NOT JUST SMOOTH.)
+            //continue up to second word
+            for (int startSplit = words.size()-1; 0 < startSplit; startSplit--) {
+                String subName = String.join(" ", words.subList(startSplit, words.size()));
+                items.putIfAbsent(subName, rawId);
+            }
         }
+        
+        return items;
+    }
+
+    //can't use distance or levenshtein because it would take words like none = bone, and = sand
+    static boolean sameName(String name, String testName){
+        boolean isSame = name.equals(testName);
+        if(isSame)
+            System.out.println("ITEMSTR: " + name);
+        return isSame;
     }
 
     static final String validSpaceRegex = "[^A-Za-z ]+";
     static List<String> getWordsAndIds(String sentence){
+        long startMs = System.currentTimeMillis();
         List<String> words = new ArrayList<>(Arrays.asList(sentence.split(" ")));
                 
         for (int numWords = Math.max(words.size(), 3); 0 < numWords; numWords--) {
@@ -97,6 +101,8 @@ public class ItemSearch {
                 }
             }
         }
+
+        System.out.println((System.currentTimeMillis()-startMs) + "ms: getWordsAndIds");
 
         return words;
     }
